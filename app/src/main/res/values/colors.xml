@@ -12,5 +12,6 @@
     <color name="green01">#65F896</color>
     <color name="purple01">#8C65F8</color>
     <color name="red01">#FF2A2A</color>
+    <color name="white_pure">#FFFFFF</color>
 
 </resources>

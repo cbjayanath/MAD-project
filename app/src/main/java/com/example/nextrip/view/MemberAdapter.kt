@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.R
 import com.example.nextrip.model.MemberData
 
+
 class MemberAdapter (val c:Context,val memberList: ArrayList<MemberData>):RecyclerView.Adapter<MemberAdapter.memberViewHolder>()
 {
     inner class memberViewHolder(val v: View) :RecyclerView.ViewHolder(v){
