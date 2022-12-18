@@ -5,18 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nextrip.Adapters.MembersAdapter
 import com.example.nextrip.model.MemberData
-import com.example.nextrip.view.MemberAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import java.util.regex.Pattern
 
 class Member : AppCompatActivity() {
@@ -24,33 +23,75 @@ class Member : AppCompatActivity() {
     private lateinit var reference: DatabaseReference
 
     private lateinit var addsBtn: FloatingActionButton
-    private lateinit var recv: RecyclerView
-    private lateinit var memberList:ArrayList<MemberData>
-    private lateinit var memberAdapter:MemberAdapter
+    private lateinit var memberRecyclerView: RecyclerView
+    private lateinit var memberList: ArrayList<MemberData>
+    private lateinit var membersAdapter: MembersAdapter
+
+    private lateinit var btnmember: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member)
-        var nextbtn=findViewById<Button>(R.id.memberNextBtn)
-        memberList = ArrayList()/**set List*/
+
+        btnmember = findViewById(R.id.memberNextBtn)
+        //memberList = ArrayList()/**set List*/
 
         /**set find Id*/
         addsBtn = findViewById(R.id.addingButton)
-        recv = findViewById(R.id.mRecycler)
+        memberRecyclerView = findViewById(R.id.mRecycler)
+        memberRecyclerView.layoutManager = LinearLayoutManager(this)
+        memberRecyclerView.setHasFixedSize(true)
 
-        memberAdapter = MemberAdapter(this, memberList) /**set Adapter*/
-        /**setRecycler view Adapter*/
-        recv.layoutManager = LinearLayoutManager(this)
-        recv.adapter = memberAdapter
+        memberList = arrayListOf<MemberData>()
+
+        showMemberData()
+
+//        memberAdapter = MemberAdapter(this, memberList) /**set Adapter*/
+//        /**setRecycler view Adapter*/
+//        memberRecyclerView.adapter = memberAdapter
 
         addsBtn.setOnClickListener{
             addInfo()
         }
 
-        nextbtn.setOnClickListener{
-            startActivity(Intent(this,Backpack::class.java))
+        btnmember.setOnClickListener{
+            val intent = Intent(this,Backpack::class.java)
+            startActivity(intent)
         }
 
+    }
+
+    private fun showMemberData() {
+
+        memberRecyclerView.visibility = View.GONE
+
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("member")
+
+        reference.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                memberList.clear()
+
+                if (snapshot.exists()) {
+                    for (ms in snapshot.children) {
+                        val memberData = ms.getValue(MemberData::class.java)
+                        if (memberData != null) {
+                            memberList.add(memberData)
+                        }
+                    }
+
+                    membersAdapter = MembersAdapter(memberList)
+                    memberRecyclerView.adapter = membersAdapter
+                    memberRecyclerView.visibility = View.VISIBLE
+                }
+            }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+        })
     }
 
     private fun addInfo() {

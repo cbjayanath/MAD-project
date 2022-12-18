@@ -70,21 +70,30 @@ class CreateTrip : AppCompatActivity() {
         val tripname = tripname.text.toString()
         val tripdesc = tripdescription.text.toString()
 
-        val userid = firebaseAuth.currentUser?.uid.toString()
+        if(tripname.isEmpty()){
+            Toast.makeText(this, "Trip name field is required!", Toast.LENGTH_LONG).show()
+        }else if(d_text.text.toString().isEmpty()){
+            Toast.makeText(this, "Date field is required!", Toast.LENGTH_LONG).show()
+        }else if(tripdesc.isEmpty()){
+            Toast.makeText(this, "Trip description field is required!", Toast.LENGTH_LONG).show()
+        }else{
 
-        val tripid = reference.push().key!!
+            val userid = firebaseAuth.currentUser?.uid.toString()
 
-        val trip = TripData(tripid, tripname, tripdesc, d_text.text.toString(), d_text.text.toString(), userid, false)
+            val tripid = reference.push().key!!
 
-        reference.child(tripid).setValue(trip).addOnCompleteListener{
-            if(it.isSuccessful){
-                val tripIntent = Intent(this@CreateTrip, Member::class.java)
-                tripIntent.putExtra("tripid", tripid)
-                startActivity(tripIntent)
-                Toast.makeText(this, "$tripname created successfully!", Toast.LENGTH_LONG).show()
+            val trip = TripData(tripid, tripname, tripdesc, d_text.text.toString(), d_text.text.toString(), userid, false)
+
+            reference.child(tripid).setValue(trip).addOnCompleteListener{
+                if(it.isSuccessful){
+                    val tripIntent = Intent(this@CreateTrip, Member::class.java)
+                    tripIntent.putExtra("tripid", tripid)
+                    startActivity(tripIntent)
+                    Toast.makeText(this, "$tripname created successfully!", Toast.LENGTH_LONG).show()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Cannot create $tripname!", Toast.LENGTH_LONG).show()
             }
-        }.addOnFailureListener {
-            Toast.makeText(this, "Cannot create $tripname!", Toast.LENGTH_LONG).show()
         }
     }
 

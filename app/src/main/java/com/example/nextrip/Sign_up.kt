@@ -81,7 +81,7 @@ class Sign_up : AppCompatActivity() {
 
                     val userid = firebaseAuth.currentUser?.uid.toString()
 
-                    var user = UserData(userid, firstname, lastname, email, password)
+                    val user = UserData(userid, firstname, lastname, email, password)
 
                     reference.child(userid).setValue(user)
                         .addOnCompleteListener{

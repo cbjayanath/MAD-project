@@ -65,7 +65,8 @@ class Sign_In : AppCompatActivity() {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if(it.isSuccessful){
                     if(firebaseAuth.currentUser?.toString() != null){
-                        startActivity(Intent(this,MainActivity::class.java))
+                        val intent = Intent(this,MainActivity::class.java)
+                        startActivity(intent)
                     }else{
                         Toast.makeText(this, "Cannot find User!", Toast.LENGTH_LONG).show()
                     }
