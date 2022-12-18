@@ -33,7 +33,9 @@
         app:helperTextTextColor="@color/red01"
         app:startIconDrawable="@drawable/ic_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_signin_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress">
@@ -58,7 +60,9 @@
         app:startIconDrawable="@drawable/ic_lock"
         app:endIconMode="password_toggle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_signin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword">

@@ -3,6 +3,7 @@ package com.example.nextrip
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -14,8 +15,14 @@ import com.example.nextrip.model.MemberData
 import com.example.nextrip.view.MemberAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import java.util.regex.Pattern
 
 class Member : AppCompatActivity() {
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+
     private lateinit var addsBtn: FloatingActionButton
     private lateinit var recv: RecyclerView
     private lateinit var memberList:ArrayList<MemberData>
@@ -47,6 +54,7 @@ class Member : AppCompatActivity() {
     }
 
     private fun addInfo() {
+
         val inflter = LayoutInflater.from(this)
         val v = inflter.inflate(R.layout.add_member,null)
         /**set view*/
@@ -59,14 +67,45 @@ class Member : AppCompatActivity() {
         addDialog.setView(v)
         addDialog.setPositiveButton("Add"){
                 dialog,_->
+
             val name = memberName.text.toString()
             val number = memberTel.text.toString()
             val emergency=memberEmergency.text.toString()
             val address=memberAddress.text.toString()
-            memberList.add(MemberData("Name: $name","Mobile No. : $number"))
-            memberAdapter.notifyDataSetChanged()
-            Toast.makeText(this,"Member Added!",Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
+
+            if(name.isEmpty()){
+                Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
+            }else if(!isOnlyLetters(name)){
+                Toast.makeText(this, "Invalid name! Please give first name", Toast.LENGTH_LONG).show()
+            }else if(number.isEmpty()){
+                Toast.makeText(this, "Phone number is required!", Toast.LENGTH_LONG).show()
+            }else if(!isValidPhoneNumber(number)){
+                Toast.makeText(this, "Phone number is not valid!", Toast.LENGTH_LONG).show()
+            }else if(emergency.isEmpty()){
+                Toast.makeText(this, "Emergency contact is required!", Toast.LENGTH_LONG).show()
+            }else if(!isValidPhoneNumber(emergency)){
+                Toast.makeText(this, "Phone number is not valid!", Toast.LENGTH_LONG).show()
+            }else if(address.isEmpty()){
+                Toast.makeText(this, "Address is required!", Toast.LENGTH_LONG).show()
+            }else{
+
+                database = FirebaseDatabase.getInstance()
+                reference = database.getReference("member")
+
+                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid"))
+
+                reference.child(number).setValue(member).addOnCompleteListener{
+                    if(it.isSuccessful){
+                        Toast.makeText(this,"$name Added Successfully!",Toast.LENGTH_LONG).show()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this,"Cannot add $name",Toast.LENGTH_LONG).show()
+                }
+
+                //memberAdapter.notifyDataSetChanged()
+
+                dialog.dismiss()
+            }
         }
         addDialog.setNegativeButton("Cancel"){
                 dialog,_->
@@ -74,5 +113,15 @@ class Member : AppCompatActivity() {
         }
         addDialog.create()
         addDialog.show()
+    }
+
+    private fun isValidPhoneNumber(number: String): Boolean {
+        val pattern: Pattern = Patterns.PHONE
+        return pattern.matcher(number).matches()
+    }
+
+    private fun isOnlyLetters(word: String): Boolean {
+        val regex = "^[A-Za-z]*$".toRegex()
+        return regex.matches(word)
     }
 }

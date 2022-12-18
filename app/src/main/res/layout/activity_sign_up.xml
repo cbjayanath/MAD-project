@@ -34,7 +34,9 @@
         app:helperTextTextColor="@color/red01"
         app:startIconDrawable="@drawable/ic_person"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_signup_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text">
@@ -57,7 +59,9 @@
         app:helperTextTextColor="@color/red01"
         app:startIconDrawable="@drawable/ic_person"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_signup_lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text">
@@ -80,7 +84,9 @@
         app:helperTextTextColor="@color/red01"
         app:startIconDrawable="@drawable/ic_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress">
@@ -104,7 +110,9 @@
         app:startIconDrawable="@drawable/ic_lock"
         app:endIconMode="password_toggle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_signup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword">
@@ -113,18 +121,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/signUptBtn"
+        android:id="@+id/btn_signup"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="50dp"
-        android:text="Sign up"
-        android:layout_alignParentBottom="true"
 
+        android:layout_marginRight="25dp"
         android:background="@drawable/rounded_textview"
-        style="@style/Widget.MaterialComponents.Button"
-        />
+        android:text="Sign up" />
 
 
 </LinearLayout>
