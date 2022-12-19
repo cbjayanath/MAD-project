@@ -29,7 +29,7 @@ class Member : AppCompatActivity() {
     private lateinit var memberRecyclerView: RecyclerView
     private lateinit var memberList: ArrayList<MemberData>
     private lateinit var membersAdapter: MembersAdapter
-    private lateinit var loadicon: ImageView
+    //private lateinit var loadicon: ImageView
 
     private lateinit var btnmember: Button
 
@@ -45,8 +45,9 @@ class Member : AppCompatActivity() {
         memberRecyclerView.layoutManager = LinearLayoutManager(this)
         memberRecyclerView.setHasFixedSize(true)
 
-        loadicon = findViewById(R.id.image_loadicon)
-        Glide.with(this).load(R.drawable.loadicon).into(loadicon)
+
+//        loadicon = findViewById(R.id.image_loadicon)
+//        Glide.with(this).load(R.drawable.loadicon).into(loadicon)
 
         memberList = arrayListOf<MemberData>()
 
@@ -66,7 +67,7 @@ class Member : AppCompatActivity() {
     private fun showMemberData() {
 
         memberRecyclerView.visibility = View.GONE
-        loadicon.visibility = View.VISIBLE
+        //loadicon.visibility = View.VISIBLE
 
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("member")
@@ -87,11 +88,13 @@ class Member : AppCompatActivity() {
                     membersAdapter = MembersAdapter(memberList)
                     memberRecyclerView.adapter = membersAdapter
                     memberRecyclerView.visibility = View.VISIBLE
-                    loadicon.visibility = View.GONE
+                    //loadicon.visibility = View.GONE
 
                     membersAdapter.setonItemClickListener(object : MembersAdapter.onItemClickListener{
                         override fun onItemClick(position: Int) {
+
                             val memberDetailsIntent = Intent(this@Member, MemberDetail::class.java)
+
 
                             memberDetailsIntent.putExtra("memberphonenumber", memberList[position].memberMobile)
                             memberDetailsIntent.putExtra("membername", memberList[position].memberName)

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
     app:cardElevation="3dp"
     app:cardMaxElevation="5dp"
+    app:cardUseCompatPadding="true"
     android:layout_margin="20dp">
 
     <LinearLayout
@@ -17,7 +19,8 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/linearlayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="1"
@@ -34,18 +37,52 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/msubtitle"
+
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="Sub Title"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:id="@+id/memberExpandRLayout"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/msubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Sub Title"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/mEmergencyContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:textStyle="bold"
+                    android:text="Emergency Contact"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="15sp"
+                    android:paddingTop="30dp"/>
+
+                <TextView
+                    android:id="@+id/maddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Address"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="15sp"
+                    android:paddingTop="60dp"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/moreDetails"
+                    tools:ignore="UnknownId" />
+
+
+            </RelativeLayout>
 
         </LinearLayout>
-
         <ImageView
             android:id="@+id/moreIcon"
             android:layout_width="wrap_content"
@@ -53,5 +90,9 @@
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:src="@drawable/ic_more" />
+
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+
+
