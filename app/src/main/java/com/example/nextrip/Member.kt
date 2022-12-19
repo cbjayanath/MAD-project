@@ -7,10 +7,13 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.nextrip.Adapters.MembersAdapter
 import com.example.nextrip.model.MemberData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -26,6 +29,7 @@ class Member : AppCompatActivity() {
     private lateinit var memberRecyclerView: RecyclerView
     private lateinit var memberList: ArrayList<MemberData>
     private lateinit var membersAdapter: MembersAdapter
+    private lateinit var loadicon: ImageView
 
     private lateinit var btnmember: Button
 
@@ -34,21 +38,19 @@ class Member : AppCompatActivity() {
         setContentView(R.layout.activity_member)
 
         btnmember = findViewById(R.id.memberNextBtn)
-        //memberList = ArrayList()/**set List*/
 
-        /**set find Id*/
         addsBtn = findViewById(R.id.addingButton)
+
         memberRecyclerView = findViewById(R.id.mRecycler)
         memberRecyclerView.layoutManager = LinearLayoutManager(this)
         memberRecyclerView.setHasFixedSize(true)
 
+        loadicon = findViewById(R.id.image_loadicon)
+        Glide.with(this).load(R.drawable.loadicon).into(loadicon)
+
         memberList = arrayListOf<MemberData>()
 
         showMemberData()
-
-//        memberAdapter = MemberAdapter(this, memberList) /**set Adapter*/
-//        /**setRecycler view Adapter*/
-//        memberRecyclerView.adapter = memberAdapter
 
         addsBtn.setOnClickListener{
             addInfo()
@@ -64,6 +66,7 @@ class Member : AppCompatActivity() {
     private fun showMemberData() {
 
         memberRecyclerView.visibility = View.GONE
+        loadicon.visibility = View.VISIBLE
 
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("member")
@@ -84,6 +87,21 @@ class Member : AppCompatActivity() {
                     membersAdapter = MembersAdapter(memberList)
                     memberRecyclerView.adapter = membersAdapter
                     memberRecyclerView.visibility = View.VISIBLE
+                    loadicon.visibility = View.GONE
+
+                    membersAdapter.setonItemClickListener(object : MembersAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+                            val memberDetailsIntent = Intent(this@Member, MemberDetail::class.java)
+
+                            memberDetailsIntent.putExtra("memberphonenumber", memberList[position].memberMobile)
+                            memberDetailsIntent.putExtra("membername", memberList[position].memberName)
+                            memberDetailsIntent.putExtra("memberaddress", memberList[position].memberAddress)
+                            memberDetailsIntent.putExtra("memberemcontact", memberList[position].memberEmergencyNumber)
+
+                            startActivity(memberDetailsIntent)
+                        }
+
+                    })
                 }
             }
 
@@ -142,8 +160,6 @@ class Member : AppCompatActivity() {
                 }.addOnFailureListener {
                     Toast.makeText(this,"Cannot add $name",Toast.LENGTH_LONG).show()
                 }
-
-                //memberAdapter.notifyDataSetChanged()
 
                 dialog.dismiss()
             }
