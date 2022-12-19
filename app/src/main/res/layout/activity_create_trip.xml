@@ -32,7 +32,9 @@
         app:boxCornerRadiusTopStart=   "10dp"
         app:boxCornerRadiusTopEnd=     "10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_createtrip_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text">
@@ -78,15 +80,17 @@
         app:boxCornerRadiusTopStart=   "10dp"
         app:boxCornerRadiusTopEnd=     "10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_input_createtrip_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="6"
             android:gravity="top"
             android:inputType="textMultiLine"
+            android:lines="6"
             android:overScrollMode="always"
-            android:scrollbars="vertical"
             android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
             android:scrollHorizontally="false">
 
         </com.google.android.material.textfield.TextInputEditText>
