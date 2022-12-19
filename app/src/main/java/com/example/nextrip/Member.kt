@@ -72,7 +72,7 @@ class Member : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("member")
 
-        reference.addValueEventListener(object: ValueEventListener{
+        reference.orderByChild("tripid").equalTo(intent.getStringExtra("tripid").toString()).addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 memberList.clear()
@@ -100,6 +100,7 @@ class Member : AppCompatActivity() {
                             memberDetailsIntent.putExtra("membername", memberList[position].memberName)
                             memberDetailsIntent.putExtra("memberaddress", memberList[position].memberAddress)
                             memberDetailsIntent.putExtra("memberemcontact", memberList[position].memberEmergencyNumber)
+                            memberDetailsIntent.putExtra("tripid", memberList[position].tripid)
 
                             startActivity(memberDetailsIntent)
                         }
@@ -141,7 +142,7 @@ class Member : AppCompatActivity() {
                 Toast.makeText(this, "Invalid name! Please give first name", Toast.LENGTH_LONG).show()
             }else if(number.isEmpty()){
                 Toast.makeText(this, "Phone number is required!", Toast.LENGTH_LONG).show()
-            }else if(!isValidPhoneNumber(number)){
+            }else if(!isValidPhoneNumber(number) && number.length == 10){
                 Toast.makeText(this, "Phone number is not valid!", Toast.LENGTH_LONG).show()
             }else if(emergency.isEmpty()){
                 Toast.makeText(this, "Emergency contact is required!", Toast.LENGTH_LONG).show()
