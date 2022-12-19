@@ -10,19 +10,19 @@ import com.example.nextrip.model.MemberData
 
 class MembersAdapter(private val memberList: ArrayList<MemberData>): RecyclerView.Adapter<MembersAdapter.ViewHolder>() {
 
-    //private lateinit var memberListener : onItemClickListener
+    private lateinit var memberListener : onItemClickListener
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
     }
 
-//    fun setonItemClickListener(clickListener: onItemClickListener){
-//        memberListener = clickListener
-//    }
+    fun setonItemClickListener(clickListener: onItemClickListener){
+        memberListener = clickListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_members, parent, false)
-        return ViewHolder(itemView)
+        return ViewHolder(itemView, memberListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -35,10 +35,15 @@ class MembersAdapter(private val memberList: ArrayList<MemberData>): RecyclerVie
         return memberList.size
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(view) {
 
         val name : TextView = itemView.findViewById(R.id.mtitle)
         val phonenumber : TextView = itemView.findViewById(R.id.msubtitle)
 
+        init {
+            itemView.setOnClickListener{
+                clickListener.onItemClick(adapterPosition)
+            }
         }
     }
+}
