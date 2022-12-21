@@ -93,16 +93,16 @@ class Member : AppCompatActivity() {
                     membersAdapter.setonItemClickListener(object : MembersAdapter.onItemClickListener{
                         override fun onItemClick(position: Int) {
 
-                            val memberDetailsIntent = Intent(this@Member, MemberDetail::class.java)
-
-
-                            memberDetailsIntent.putExtra("memberphonenumber", memberList[position].memberMobile)
-                            memberDetailsIntent.putExtra("membername", memberList[position].memberName)
-                            memberDetailsIntent.putExtra("memberaddress", memberList[position].memberAddress)
-                            memberDetailsIntent.putExtra("memberemcontact", memberList[position].memberEmergencyNumber)
-                            memberDetailsIntent.putExtra("tripid", memberList[position].tripid)
-
-                            startActivity(memberDetailsIntent)
+//                            val memberDetailsIntent = Intent(this@Member, MemberDetail::class.java)
+//
+//
+//                            memberDetailsIntent.putExtra("memberphonenumber", memberList[position].memberMobile)
+//                            memberDetailsIntent.putExtra("membername", memberList[position].memberName)
+//                            memberDetailsIntent.putExtra("memberaddress", memberList[position].memberAddress)
+//                            memberDetailsIntent.putExtra("memberemcontact", memberList[position].memberEmergencyNumber)
+//                            memberDetailsIntent.putExtra("tripid", memberList[position].tripid)
+//
+//                            startActivity(memberDetailsIntent)
                         }
 
                     })

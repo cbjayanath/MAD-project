@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_margin="15dp">
-    
+
     <LinearLayout
         android:orientation="vertical"
         android:paddingBottom="15dp"
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Add Member"
+            android:text="Add Location"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -41,7 +41,7 @@
             app:boxCornerRadiusTopEnd=     "10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mName"
+                android:id="@+id/lName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName">
@@ -53,7 +53,29 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mobile No. "
+            android:hint="Nearest City"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusBottomEnd=  "10dp"
+            app:boxCornerRadiusTopStart=   "10dp"
+            app:boxCornerRadiusTopEnd=     "10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="District "
             android:layout_marginTop="10dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
@@ -66,7 +88,7 @@
                 android:id="@+id/mTelephone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone">
+                android:inputType="text">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -75,7 +97,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Emergency Contact"
+            android:hint="Description"
             android:layout_marginTop="10dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
@@ -88,7 +110,8 @@
                 android:id="@+id/mEmergency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text">
+                android:inputType="textMultiLine"
+                android:lines="3">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -97,7 +120,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address"
+            android:hint="Arrival Date"
             android:layout_marginTop="10dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
@@ -107,10 +130,36 @@
             app:boxCornerRadiusTopEnd=     "10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mAddress"
+                android:id="@+id/arrivalDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text">
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="none">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Arrival Time"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusBottomEnd=  "10dp"
+            app:boxCornerRadiusTopStart=   "10dp"
+            app:boxCornerRadiusTopEnd=     "10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/arrivalTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="none">
 
             </com.google.android.material.textfield.TextInputEditText>
 
