@@ -109,6 +109,7 @@ class Member : AppCompatActivity() {
                     }
 
                     membersAdapter = MembersAdapter(memberList)
+
                     memberRecyclerView.adapter = membersAdapter
                     memberRecyclerView.visibility = View.VISIBLE
                     //loadicon.visibility = View.GONE
