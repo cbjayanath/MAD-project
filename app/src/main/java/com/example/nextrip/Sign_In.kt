@@ -32,8 +32,8 @@ class Sign_In : AppCompatActivity() {
         txt_email = findViewById(R.id.txt_input_signin_email)!!
         pw_password = findViewById(R.id.txt_input_signin_password)!!
 
-        var signin_btn=findViewById<Button>(R.id.signInBtn)
-        var signup_txt=findViewById<TextView>(R.id.signUpHereText)
+        val signin_btn=findViewById<Button>(R.id.signInBtn)
+        val signup_txt=findViewById<TextView>(R.id.signUpHereText)
 
         signin_btn.setOnClickListener{
 
@@ -47,8 +47,8 @@ class Sign_In : AppCompatActivity() {
 
     private fun signIN() {
 
-        var email = txt_email.text.toString()
-        var password = pw_password.text.toString()
+        val email = txt_email.text.trim().toString()
+        val password = pw_password.text.trim().toString()
 
         if(email.isEmpty()){
             Toast.makeText(this, "Email field is required!", Toast.LENGTH_LONG).show()
