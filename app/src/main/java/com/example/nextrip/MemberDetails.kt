@@ -56,15 +56,25 @@ class MemberDetails : AppCompatActivity() {
         emergencyNumberQR = findViewById(R.id.member_details_show_img_qrcode)
 
         btnback.setOnClickListener {
-
-            val backIntent = Intent(this@MemberDetails, Member::class.java)
-            backIntent.putExtra("tripid", intent.getStringExtra("tripid")).toString()
-            startActivity(backIntent)
+            back()
         }
 
         showMemberDetails()
 
         showMemberEmContactQR()
+
+        address.setOnClickListener{
+            val gmmIntentUri = Uri.parse("geo:0,0?q=" + intent.getStringExtra("memberaddress").toString())
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
+        }
+
+        emergencyNumber.setOnClickListener {
+            val dialIntent = Intent(Intent.ACTION_DIAL)
+            dialIntent.data = Uri.parse(intent.getStringExtra("memberemcontact").toString())
+            startActivity(dialIntent)
+        }
 
         btnshare.setOnClickListener{
             shareMember(intent.getStringExtra("membername").toString(), intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("memberemcontact").toString(), intent.getStringExtra("memberaddress").toString())
@@ -163,8 +173,8 @@ class MemberDetails : AppCompatActivity() {
 
             val name = memberName.text?.trim().toString()
             val number = memberTel.text?.trim().toString()
-            val emergency=memberEmergency.text?.trim().toString()
-            val address=memberAddress.text?.trim().toString()
+            val emergency = memberEmergency.text?.trim().toString()
+            val address = memberAddress.text?.trim().toString()
 
             if(name.isEmpty()){
                 Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
@@ -212,9 +222,16 @@ class MemberDetails : AppCompatActivity() {
 
         reference.removeValue().addOnSuccessListener {
             Toast.makeText(this, "$name deleted successfully!", Toast.LENGTH_LONG).show()
+            back()
         }.addOnFailureListener { error ->
             Toast.makeText(this, "Cannot delete $name. Error : ${error.message}", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun back(){
+        val backIntent = Intent(this@MemberDetails, Member::class.java)
+        backIntent.putExtra("tripid", intent.getStringExtra("tripid")).toString()
+        startActivity(backIntent)
     }
 
     private fun isValidPhoneNumber(number: String): Boolean {
@@ -223,7 +240,7 @@ class MemberDetails : AppCompatActivity() {
     }
 
     private fun isOnlyLetters(word: String): Boolean {
-        val regex = "^[A-Za-z]*$".toRegex()
+        val regex = "^[A-Za-z]+$".toRegex()
         return regex.matches(word)
     }
 }

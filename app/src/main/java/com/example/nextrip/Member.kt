@@ -121,8 +121,8 @@ class Member : AppCompatActivity() {
         /**set view*/
         val memberName = v.findViewById<TextInputEditText>(R.id.mName)
         val memberTel = v.findViewById<TextInputEditText>(R.id.mTelephone)
-        val memberEmergency=v.findViewById<TextInputEditText>(R.id.mEmergency)
-        val memberAddress=v.findViewById<TextInputEditText>(R.id.mAddress)
+        val memberEmergency = v.findViewById<TextInputEditText>(R.id.mEmergency)
+        val memberAddress = v.findViewById<TextInputEditText>(R.id.mAddress)
 
         val addDialog = AlertDialog.Builder(this)
         addDialog.setView(v)
@@ -132,7 +132,7 @@ class Member : AppCompatActivity() {
             val name = memberName.text?.trim().toString()
             val number = memberTel.text?.trim().toString()
             val emergency = memberEmergency.text?.trim().toString()
-            val address=memberAddress.text?.trim().toString()
+            val address = memberAddress.text?.trim().toString()
 
             if(name.isEmpty()){
                 Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
@@ -180,7 +180,7 @@ class Member : AppCompatActivity() {
     }
 
     private fun isOnlyLetters(word: String): Boolean {
-        val regex = "^[A-Za-z]*$".toRegex()
+        val regex = "^[A-Za-z]+$".toRegex()
         return regex.matches(word)
     }
 }
