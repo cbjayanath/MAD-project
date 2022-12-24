@@ -153,7 +153,7 @@ class Member : AppCompatActivity() {
                 database = FirebaseDatabase.getInstance()
                 reference = database.getReference("member")
 
-                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid"))
+                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid").toString())
 
                 reference.child(number).setValue(member).addOnCompleteListener{
                     if(it.isSuccessful){

@@ -57,19 +57,19 @@ class MemberDetails : AppCompatActivity() {
 
         showMemberDetails()
 
-        showMemberEmContactQR(intent.getStringExtra("memberemcontact").toString())
-
-        btnshare.setOnClickListener{
-            shareMember(intent.getStringExtra("membername").toString(), intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("memberemcontact").toString(), intent.getStringExtra("memberaddress").toString())
-        }
-
-        btnedit.setOnClickListener{
-            updateMemberDetails()
-        }
-
-        btndelete.setOnClickListener {
-            deleteRecord(intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("membername").toString())
-        }
+//        showMemberEmContactQR(intent.getStringExtra("memberemcontact").toString())
+//
+//        btnshare.setOnClickListener{
+//            shareMember(intent.getStringExtra("membername").toString(), intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("memberemcontact").toString(), intent.getStringExtra("memberaddress").toString())
+//        }
+//
+//        btnedit.setOnClickListener{
+//            updateMemberDetails()
+//        }
+//
+//        btndelete.setOnClickListener {
+//            deleteRecord(intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("membername").toString())
+//        }
     }
 
     private fun showMemberDetails() {
