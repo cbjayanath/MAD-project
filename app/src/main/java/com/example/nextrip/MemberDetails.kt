@@ -57,19 +57,19 @@ class MemberDetails : AppCompatActivity() {
 
         showMemberDetails()
 
-//        showMemberEmContactQR(intent.getStringExtra("memberemcontact").toString())
-//
-//        btnshare.setOnClickListener{
-//            shareMember(intent.getStringExtra("membername").toString(), intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("memberemcontact").toString(), intent.getStringExtra("memberaddress").toString())
-//        }
-//
-//        btnedit.setOnClickListener{
-//            updateMemberDetails()
-//        }
-//
-//        btndelete.setOnClickListener {
-//            deleteRecord(intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("membername").toString())
-//        }
+        showMemberEmContactQR()
+
+        btnshare.setOnClickListener{
+            shareMember(intent.getStringExtra("membername").toString(), intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("memberemcontact").toString(), intent.getStringExtra("memberaddress").toString())
+        }
+
+        btnedit.setOnClickListener{
+            updateMemberDetails()
+        }
+
+        btndelete.setOnClickListener {
+            deleteRecord(intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("membername").toString())
+        }
     }
 
     private fun showMemberDetails() {
@@ -79,9 +79,11 @@ class MemberDetails : AppCompatActivity() {
         address.text = intent.getStringExtra("memberaddress").toString()
     }
 
-    private fun showMemberEmContactQR(qr: String ?= null) {
+    private fun showMemberEmContactQR() {
 
-        if(qr!!.isEmpty()){
+        val qr = intent.getStringExtra("memberemcontact").toString()
+
+        if(qr.isEmpty()){
             emergencyNumberQR.visibility = View.GONE
         }else if(qr.isNotEmpty()){
 
