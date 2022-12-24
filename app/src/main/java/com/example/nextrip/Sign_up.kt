@@ -48,10 +48,10 @@ class Sign_up : AppCompatActivity() {
     private fun signup() {
 
 
-        val firstname = txt_firstname.text.trim().toString()
-        val lastname = txt_lastname.text.trim().toString()
-        val email = txt_email.text.trim().toString()
-        val password = pw_password.text.trim().toString()
+        val firstname = txt_firstname.text?.trim().toString()
+        val lastname = txt_lastname.text?.trim().toString()
+        val email = txt_email.text?.trim().toString()
+        val password = pw_password.text?.trim().toString()
 
         if(firstname.isEmpty()){
             Toast.makeText(this, "First Name field is required!", Toast.LENGTH_LONG).show()

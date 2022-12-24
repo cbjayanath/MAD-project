@@ -3,6 +3,7 @@ package com.example.nextrip
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -44,6 +45,9 @@ class MemberDetails : AppCompatActivity() {
         setContentView(R.layout.activity_member_details)
 
         btnback = findViewById(R.id.member_details_btn_back)
+        btnshare = findViewById(R.id.details_member_btn_share)
+        btnedit = findViewById(R.id.details_member_btn_update)
+        btndelete = findViewById(R.id.details_member_btn_delete)
 
         name = findViewById(R.id.member_details_txt_show_name)
         phoneNumber = findViewById(R.id.member_details_txt_show_phonenumber)
@@ -52,7 +56,10 @@ class MemberDetails : AppCompatActivity() {
         emergencyNumberQR = findViewById(R.id.member_details_show_img_qrcode)
 
         btnback.setOnClickListener {
-            startActivity(Intent(this, Member::class.java))
+
+            val backIntent = Intent(this@MemberDetails, Member::class.java)
+            backIntent.putExtra("tripid", intent.getStringExtra("tripid")).toString()
+            startActivity(backIntent)
         }
 
         showMemberDetails()
@@ -90,7 +97,7 @@ class MemberDetails : AppCompatActivity() {
             val writer = QRCodeWriter()
 
             try {
-                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 100, 100)
+                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 150, 150)
                 val width = bitMatrix.width
                 val height = bitMatrix.height
                 val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
@@ -178,7 +185,7 @@ class MemberDetails : AppCompatActivity() {
                 database = FirebaseDatabase.getInstance()
                 reference = database.getReference("member")
 
-                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid").toString())
+                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid"))
 
                 reference.child(number).child(member.toString()).setValue(member).addOnCompleteListener{
                     if(it.isSuccessful){

@@ -47,8 +47,8 @@ class Sign_In : AppCompatActivity() {
 
     private fun signIN() {
 
-        val email = txt_email.text.trim().toString()
-        val password = pw_password.text.trim().toString()
+        val email = txt_email.text?.trim().toString()
+        val password = pw_password.text?.trim().toString()
 
         if(email.isEmpty()){
             Toast.makeText(this, "Email field is required!", Toast.LENGTH_LONG).show()

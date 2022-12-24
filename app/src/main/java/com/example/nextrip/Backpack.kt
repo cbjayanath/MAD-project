@@ -61,7 +61,7 @@ class Backpack : AppCompatActivity() {
                 Toast.makeText(this, "Description is required!", Toast.LENGTH_LONG).show()
             }else{
 
-                toggle = findViewById(R.id.btntoggle_isRented)
+                toggle = findViewById(R.id.btntoggle_isRented)!!
 
                 database = FirebaseDatabase.getInstance()
                 reference = database.getReference("item")

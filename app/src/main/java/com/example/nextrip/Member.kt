@@ -129,10 +129,10 @@ class Member : AppCompatActivity() {
         addDialog.setPositiveButton("Add"){
                 dialog,_->
 
-            val name = memberName.text.toString()
-            val number = memberTel.text.toString()
-            val emergency=memberEmergency.text.toString()
-            val address=memberAddress.text.toString()
+            val name = memberName.text?.trim().toString()
+            val number = memberTel.text?.trim().toString()
+            val emergency = memberEmergency.text?.trim().toString()
+            val address=memberAddress.text?.trim().toString()
 
             if(name.isEmpty()){
                 Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
@@ -144,8 +144,8 @@ class Member : AppCompatActivity() {
                 Toast.makeText(this, "Phone number is not valid!", Toast.LENGTH_LONG).show()
             }else if(emergency.isEmpty()){
                 Toast.makeText(this, "Emergency contact is required!", Toast.LENGTH_LONG).show()
-            }else if(!isValidPhoneNumber(emergency)){
-                Toast.makeText(this, "Phone number is not valid!", Toast.LENGTH_LONG).show()
+            }else if(!isValidPhoneNumber(emergency) && emergency.length == 10){
+                Toast.makeText(this, "Emergency phone number is not valid!", Toast.LENGTH_LONG).show()
             }else if(address.isEmpty()){
                 Toast.makeText(this, "Address is required!", Toast.LENGTH_LONG).show()
             }else{
@@ -153,7 +153,7 @@ class Member : AppCompatActivity() {
                 database = FirebaseDatabase.getInstance()
                 reference = database.getReference("member")
 
-                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid").toString())
+                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid"))
 
                 reference.child(number).setValue(member).addOnCompleteListener{
                     if(it.isSuccessful){
