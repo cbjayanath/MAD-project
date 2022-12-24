@@ -29,17 +29,14 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/mtitle"
+                android:id="@+id/list_member_txt_show_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:text="Title"
+                android:text="Name"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -49,81 +46,14 @@
                 >
 
                 <TextView
-                    android:id="@+id/msubtitle"
+                    android:id="@+id/list_member_txt_show_phonenumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    android:text="Sub Title"
+                    android:text="Phonenumber"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/mEmergencyContact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:textStyle="bold"
-                    android:text="Emergency Contact"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="15sp"
-                    android:paddingTop="30dp"/>
-
-                <TextView
-                    android:id="@+id/maddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:text="Address"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="15sp"
-                    android:paddingTop="60dp"
-                    android:textStyle="bold"
-                    android:layout_below="@+id/moreDetails"
-                    tools:ignore="UnknownId" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/list_member_btn_share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="82dp"
-                        android:layout_marginTop="126dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:src="@drawable/ic_share"
-                        app:backgroundTint="@color/white"
-                        app:tint="@color/blue" />
-
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/list_member_btn_update"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="145dp"
-                        android:layout_marginTop="-76dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:src="@drawable/ic_edit"
-                        app:backgroundTint="@color/green01"
-                        app:tint="@color/black" />
-
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/list_member_btn_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="210dp"
-                        android:layout_marginTop="-76dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:src="@drawable/ic_delete"
-                        app:backgroundTint="@color/red01"
-                        app:tint="@color/white" />
-
-
-                </LinearLayout>
 
 
             </RelativeLayout>

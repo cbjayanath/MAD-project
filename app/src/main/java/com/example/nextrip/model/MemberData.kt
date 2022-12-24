@@ -8,7 +8,5 @@ data class MemberData (
     var memberMobile : String ?= null,
     var memberEmergencyNumber: String ?= null,
     var memberAddress: String ?= null,
-    var tripid: String ?= null,
-    var expandable :Boolean=false
-
+    var tripid: String ?= null
 )

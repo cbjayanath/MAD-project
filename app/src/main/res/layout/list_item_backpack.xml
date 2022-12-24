@@ -28,17 +28,15 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/btitle"
+                android:id="@+id/list_item_show_isRentedItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:text="Name"
-                android:textColor="@color/black"
+                android:text="A rented item*"
+                android:textColor="#0BDC51"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-
+                android:visibility="visible"
+                android:textStyle="normal" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -47,60 +45,30 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/bQuantity"
+                    android:id="@+id/list_item_show_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/itemname"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/list_item_show_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Quantity"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/bDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:textStyle="bold"
-                    android:text="Description"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="15sp"
-                    android:paddingTop="30dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/deleteIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="100dp"
-                        android:layout_marginLeft="120dp"
-                        android:src="@drawable/ic_delete"/>
-                    <ImageView
-                        android:id="@+id/shareIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="-25dp"
-                        android:layout_marginRight="-80dp"
-                        android:src="@drawable/ic_edit" />
-
-                    <ImageView
-                        android:id="@+id/editIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="-25dp"
-                        android:layout_marginRight="-40dp"
-                        android:src="@drawable/ic_share" />
-
-
-                </LinearLayout>
-
-
-
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
 
 
             </RelativeLayout>

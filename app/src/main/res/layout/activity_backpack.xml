@@ -29,19 +29,23 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="510dp"
+            tools:listitem="@layout/list_item_backpack"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addingButton2"
+        android:id="@+id/item_btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/blue"
-        app:tint="@color/white"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:tint="@color/white" />
     <Button
         android:id="@+id/backpackNextBtn"
         android:layout_width="match_parent"

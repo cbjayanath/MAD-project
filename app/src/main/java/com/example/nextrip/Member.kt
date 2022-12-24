@@ -28,11 +28,6 @@ class Member : AppCompatActivity() {
     private lateinit var memberRecyclerView: RecyclerView
     private lateinit var memberList: ArrayList<MemberData>
     private lateinit var membersAdapter: MembersAdapter
-
-    private lateinit var memberExpandedView: View
-    private lateinit var btndelete: FloatingActionButton
-    private lateinit var btnedit: FloatingActionButton
-    private lateinit var btnshare: FloatingActionButton
     //private lateinit var loadicon: ImageView
 
     private lateinit var btnmember: Button
@@ -52,14 +47,6 @@ class Member : AppCompatActivity() {
 //        loadicon = findViewById(R.id.image_loadicon)
 //        Glide.with(this).load(R.drawable.loadicon).into(loadicon)
 
-        val inflter = LayoutInflater.from(this)
-        val memberExpandedView = inflter.inflate(R.layout.list_members, null)
-
-        //btndelete = memberExpandedView.findViewById(R.id.deleteIcon)
-        btndelete = memberExpandedView.findViewById(R.id.list_member_btn_delete)
-        btnedit = memberExpandedView.findViewById(R.id.list_member_btn_update)
-        btnshare = memberExpandedView.findViewById(R.id.list_member_btn_share)
-
         memberList = arrayListOf<MemberData>()
 
         showMemberData()
@@ -71,18 +58,6 @@ class Member : AppCompatActivity() {
         btnmember.setOnClickListener{
             val intent = Intent(this,Backpack::class.java)
             startActivity(intent)
-        }
-
-        btnshare.setOnClickListener{
-            shareMember(intent.getStringExtra("membername").toString(),intent.getStringExtra("memberphonenumber").toString(),intent.getStringExtra("memberemcontact").toString(),intent.getStringExtra("memberaddress").toString())
-            Toast.makeText(this, "Share btn works", Toast.LENGTH_LONG).show()
-
-        }
-
-        btndelete.setOnClickListener{
-            deleteRecord(intent.getStringExtra("memberphonenumber").toString(), intent.getStringExtra("membername").toString())
-            Toast.makeText(this, "Delete btn works", Toast.LENGTH_LONG).show()
-
         }
 
     }
@@ -117,15 +92,15 @@ class Member : AppCompatActivity() {
                     membersAdapter.setonItemClickListener(object : MembersAdapter.onItemClickListener{
                         override fun onItemClick(position: Int) {
 
-                            val memberDetailsIntent = Intent(this@Member, this@Member::class.java)
+                            val memberDetailsIntent = Intent(this@Member, MemberDetails::class.java)
 
                             memberDetailsIntent.putExtra("memberphonenumber", memberList[position].memberMobile)
                             memberDetailsIntent.putExtra("membername", memberList[position].memberName)
                             memberDetailsIntent.putExtra("memberaddress", memberList[position].memberAddress)
                             memberDetailsIntent.putExtra("memberemcontact", memberList[position].memberEmergencyNumber)
-//                            memberDetailsIntent.putExtra("tripid", memberList[position].tripid)
-//
-//                            startActivity(memberDetailsIntent)
+                            memberDetailsIntent.putExtra("tripid", memberList[position].tripid)
+
+                            startActivity(memberDetailsIntent)
                         }
 
                     })
@@ -197,38 +172,6 @@ class Member : AppCompatActivity() {
         }
         addDialog.create()
         addDialog.show()
-    }
-
-    private fun shareMember(name: String ?= null, phone: String ?= null, emergencyNumber: String ?= null, address: String ?= null) {
-
-        val memberDetail = "$name $phone Emergency contact is $emergencyNumber and Address is $address"
-
-        val intent = Intent()
-        intent.action = Intent.ACTION_SEND
-        intent.putExtra(Intent.EXTRA_TEXT, memberDetail)
-        intent.type = "text/plain"
-
-        if(memberDetail.isNotEmpty()){
-            startActivity(Intent.createChooser(intent, "Share To : "))
-            if(isFinishing){
-                Toast.makeText(this, "$name shared successfully!", Toast.LENGTH_LONG).show()
-            }
-        }else if (memberDetail.isEmpty()){
-            Toast.makeText(this, "Null content cannt share!", Toast.LENGTH_LONG).show()
-        }else{
-            Toast.makeText(this, "Cannot share $name!", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun deleteRecord(id: String, name: String) {
-        database = FirebaseDatabase.getInstance()
-        reference = database.getReference("member").child(id)
-
-        reference.removeValue().addOnSuccessListener {
-            Toast.makeText(this, "$name deleted successfully!", Toast.LENGTH_LONG).show()
-        }.addOnFailureListener { error ->
-            Toast.makeText(this, "Cannot delete $name. Error : ${error.message}", Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun isValidPhoneNumber(number: String): Boolean {

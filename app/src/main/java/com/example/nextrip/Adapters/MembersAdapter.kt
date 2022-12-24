@@ -31,17 +31,12 @@ class MembersAdapter(private val memberList: ArrayList<MemberData>): RecyclerVie
         val currentMember = memberList[position]
         holder.name.text = currentMember.memberName
         holder.phonenumber.text = currentMember.memberMobile
-        holder.emc.text = currentMember.memberEmergencyNumber
-        holder.address.text = currentMember.memberAddress
 
-        val isExpandable : Boolean=memberList[position].expandable
-
-        holder.realtiveLayout.visibility=if (isExpandable)View.VISIBLE else View.GONE
-        holder.linearLayout.setOnClickListener{
-            val moreDetails=memberList[position]
-            moreDetails.expandable = !moreDetails.expandable
-            notifyItemChanged(position)
-        }
+//        holder.realtiveLayout.visibility=if (isExpandable)View.VISIBLE else View.GONE
+//        holder.linearLayout.setOnClickListener{
+//            val moreDetails=memberList[position]
+//            notifyItemChanged(position)
+//        }
 
     }
 
@@ -51,17 +46,8 @@ class MembersAdapter(private val memberList: ArrayList<MemberData>): RecyclerVie
 
     class ViewHolder(view: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(view) {
 
-        val name : TextView = itemView.findViewById(R.id.mtitle)
-        val phonenumber : TextView = itemView.findViewById(R.id.msubtitle)
-        val emc : TextView = itemView.findViewById(R.id.mEmergencyContact)
-        val address : TextView = itemView.findViewById(R.id.maddress)
-        val linearLayout : LinearLayout = itemView.findViewById(R.id.linearlayout)
-        val realtiveLayout:RelativeLayout=itemView.findViewById(R.id.memberExpandRLayout)
-
-
-
-
-
+        val name : TextView = itemView.findViewById(R.id.list_member_txt_show_name)
+        val phonenumber : TextView = itemView.findViewById(R.id.list_member_txt_show_phonenumber)
 
         init {
             itemView.setOnClickListener{
