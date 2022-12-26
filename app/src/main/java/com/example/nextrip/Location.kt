@@ -97,6 +97,9 @@ class Location : AppCompatActivity() {
                             locationDetailsIntent.putExtra("locationaddedtime", locationList[position].addedTime)
                             locationDetailsIntent.putExtra("locationarrivaldate", locationList[position].arrivaldate)
                             locationDetailsIntent.putExtra("locationarrivaltime", locationList[position].arrivaltime)
+                            locationDetailsIntent.putExtra("complete", locationList[position].complete)
+                            locationDetailsIntent.putExtra("completeddate", locationList[position].completeddate)
+                            locationDetailsIntent.putExtra("completedtime", locationList[position].completedtime)
                             locationDetailsIntent.putExtra("tripid", locationList[position].tripid)
 
                             startActivity(locationDetailsIntent)

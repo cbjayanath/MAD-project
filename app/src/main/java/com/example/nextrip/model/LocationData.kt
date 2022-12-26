@@ -9,6 +9,9 @@ data class LocationData(
     val arrivaldate: String ?= null,
     val arrivaltime: String ?= null,
     val addedDate: String ?= null,
-    val addedTime: String?= null,
+    val addedTime: String ?= null,
+    val complete: String ?= null,
+    val completeddate: String ?= null,
+    val completedtime: String ?= null,
     val tripid: String ?= null
 )

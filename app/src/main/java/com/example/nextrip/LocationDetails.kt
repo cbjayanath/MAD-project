@@ -1,17 +1,28 @@
 package com.example.nextrip
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
+import org.w3c.dom.Text
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class LocationDetails : AppCompatActivity() {
 
@@ -26,6 +37,8 @@ class LocationDetails : AppCompatActivity() {
     private lateinit var desc: TextView
     private lateinit var date: TextView
     private lateinit var time: TextView
+    private lateinit var complete: TextView
+    private lateinit var locationQR: ImageView
 
     private lateinit var btnmap: FloatingActionButton
     private lateinit var btnnavigation: FloatingActionButton
@@ -34,6 +47,7 @@ class LocationDetails : AppCompatActivity() {
     private lateinit var btndelete: FloatingActionButton
     private lateinit var btncomplete: Button
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_details)
@@ -46,6 +60,8 @@ class LocationDetails : AppCompatActivity() {
         desc = findViewById(R.id.location_details_txt_show_description)
         date = findViewById(R.id.location_details_txt_show_date)
         time = findViewById(R.id.location_details_txt_show_time)
+        complete = findViewById(R.id.location_details_txt_show_completed)
+        locationQR = findViewById(R.id.location_details_show_img_qrcode)
 
         btnmap = findViewById(R.id.details_location_btn_map)
         btnnavigation = findViewById(R.id.details_location_btn_navigation)
@@ -55,6 +71,10 @@ class LocationDetails : AppCompatActivity() {
         btncomplete = findViewById(R.id.details_location_btn_complete)
 
         showLocationDetails()
+
+        showLocationQR()
+
+        checkIsComplete()
 
         btnback.setOnClickListener {
             back()
@@ -75,6 +95,10 @@ class LocationDetails : AppCompatActivity() {
         btndelete.setOnClickListener{
             deleteRecord(intent.getStringExtra("locationid").toString(), intent.getStringExtra("locationname").toString())
         }
+
+        btncomplete.setOnClickListener {
+            setAsComplete(intent.getStringExtra("locationid").toString(), intent.getStringExtra("locationname").toString())
+        }
     }
 
     private fun showLocationDetails() {
@@ -85,6 +109,39 @@ class LocationDetails : AppCompatActivity() {
         date.text = intent.getStringExtra("locationaddeddate").toString() + " - " + intent.getStringExtra("locationarrivaldate").toString()
         time.text = intent.getStringExtra("locationaddedtime").toString() + " - " + intent.getStringExtra("locationarrivaltime").toString()
 
+    }
+
+    private fun showLocationQR() {
+
+        val qr = intent.getStringExtra("locationname").toString() + " in " + intent.getStringExtra("locationcity").toString()
+
+        if(qr.isEmpty()){
+            locationQR.visibility = View.GONE
+        }else if(qr.isNotEmpty()){
+
+            val writer = QRCodeWriter()
+
+            try {
+                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 50, 50)
+                val width = bitMatrix.width
+                val height = bitMatrix.height
+                val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+
+                for(x in 0 until width){
+                    for(y in 0 until height){
+                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLUE else Color.WHITE)
+                    }
+                }
+
+                locationQR.setImageBitmap(bmp)
+
+            }catch (ex: WriterException){
+                locationQR.visibility = View.INVISIBLE
+                Toast.makeText(this, "QR automatically hide because of $ex", Toast.LENGTH_LONG).show()
+            }
+        }else{
+            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showInMap(name: String ?= null){
@@ -131,6 +188,57 @@ class LocationDetails : AppCompatActivity() {
             back()
         }.addOnFailureListener { error ->
             Toast.makeText(this, "Cannot delete $name. Error : ${error.message}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setAsComplete(id: String, name: String) {
+
+        val completeddate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"))
+        val completedtime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a"))
+
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("location").child(id)
+
+        reference.child("complete").setValue("Completed").addOnCompleteListener{
+            if(it.isSuccessful){
+
+                reference.child("completeddate").setValue(completeddate).addOnCompleteListener{
+                    if(it.isSuccessful){
+                    }
+                }
+
+                reference.child("completedtime").setValue(completedtime).addOnCompleteListener{
+                    if(it.isSuccessful){
+                    }
+                }
+                Toast.makeText(this,"$name Completed Successfully!", Toast.LENGTH_LONG).show()
+                back()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this,"Cannot add $name", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun checkIsComplete(){
+
+        val completed = intent.getStringExtra("complete").toString()
+        val date = intent.getStringExtra("completeddate").toString()
+        val time = intent.getStringExtra("completedtime").toString()
+
+        if(completed=="Completed"){
+            btncomplete.visibility = View.GONE
+            btnedit.visibility = View.GONE
+            btndelete.visibility = View.GONE
+            complete.visibility = View.VISIBLE
+
+            complete.text = "Completed on $date at $time"
+
+        }else{
+            btncomplete.visibility = View.VISIBLE
+            btnedit.visibility = View.VISIBLE
+            btndelete.visibility = View.VISIBLE
+            complete.visibility = View.GONE
         }
     }
 

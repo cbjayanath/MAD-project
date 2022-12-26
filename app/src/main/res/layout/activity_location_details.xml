@@ -186,6 +186,22 @@
             app:tint="@color/white"
             android:contentDescription="@string/todo" />
 
+        <TextView
+            android:id="@+id/location_details_txt_show_completed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="1dp"
+            android:text="Completed"
+            android:textColor="#3A4D50"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:textStyle="normal" />
+
         <Button
             android:id="@+id/details_location_btn_complete"
             style="@style/Widget.MaterialComponents.Button"
