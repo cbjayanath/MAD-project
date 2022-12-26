@@ -5,6 +5,6 @@ data class ItemData(
     val name: String ?= null,
     val quantity: Int ?= 0,
     val description: String ?= null,
-    val isRented: Boolean ?= false,
+    val rented: String ?= null,
     val tripid: String ?= null
 ){}

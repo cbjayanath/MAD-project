@@ -157,8 +157,8 @@ class MemberDetails : AppCompatActivity() {
         val v = inflter.inflate(R.layout.add_member,null)
         /**set view*/
         val memberName = v.findViewById<TextInputEditText>(R.id.mName)
-        val memberTel = v.findViewById<TextInputEditText>(R.id.mTelephone)
-        val memberEmergency=v.findViewById<TextInputEditText>(R.id.mEmergency)
+        val memberTel = v.findViewById<TextInputEditText>(R.id.lDistrict)
+        val memberEmergency=v.findViewById<TextInputEditText>(R.id.lDesc)
         val memberAddress=v.findViewById<TextInputEditText>(R.id.mAddress)
 
         memberName.setText(intent.getStringExtra("membername").toString())

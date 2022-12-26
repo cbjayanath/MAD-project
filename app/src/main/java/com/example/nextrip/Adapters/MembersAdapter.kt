@@ -3,8 +3,6 @@ package com.example.nextrip.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.R
@@ -31,12 +29,6 @@ class MembersAdapter(private val memberList: ArrayList<MemberData>): RecyclerVie
         val currentMember = memberList[position]
         holder.name.text = currentMember.memberName
         holder.phonenumber.text = currentMember.memberMobile
-
-//        holder.realtiveLayout.visibility=if (isExpandable)View.VISIBLE else View.GONE
-//        holder.linearLayout.setOnClickListener{
-//            val moreDetails=memberList[position]
-//            notifyItemChanged(position)
-//        }
 
     }
 

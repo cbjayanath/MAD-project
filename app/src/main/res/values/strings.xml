@@ -13,4 +13,13 @@
     <string name="update">UPDATE</string>
     <string name="todo">DELETE</string>
     <string name="itemname">ItemName</string>
+    <string name="isrenteditem">isRentedItem</string>
+    <string name="aboutitem">aboutitem</string>
+    <string name="locationname">locationname</string>
+    <string name="citydistrict">citydistrict</string>
+    <string name="city">city</string>
+    <string name="district">district</string>
+    <string name="locationdescription">locationdescription</string>
+    <string name="arrivaldate">arrivaldate</string>
+    <string name="arrivaltime">arrivaltime</string>
 </resources>

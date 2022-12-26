@@ -12,7 +12,7 @@
     android:layout_margin="20dp">
 
     <LinearLayout
-        android:id="@+id/component_member"
+        android:id="@+id/component_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -32,11 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:text="A rented item*"
+                android:text="@string/isrenteditem"
                 android:textColor="#0BDC51"
                 android:textSize="20sp"
-                android:visibility="visible"
-                android:textStyle="normal" />
+                android:textStyle="italic" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

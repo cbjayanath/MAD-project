@@ -85,7 +85,7 @@
             app:boxCornerRadiusTopEnd=     "10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mTelephone"
+                android:id="@+id/lDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text">
@@ -107,7 +107,7 @@
             app:boxCornerRadiusTopEnd=     "10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mEmergency"
+                android:id="@+id/lDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"

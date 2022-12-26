@@ -3,12 +3,10 @@ package com.example.nextrip
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.telephony.emergency.EmergencyNumber
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,8 +54,9 @@ class Member : AppCompatActivity() {
         }
 
         btnmember.setOnClickListener{
-            val intent = Intent(this,Backpack::class.java)
-            startActivity(intent)
+            val memberIntent = Intent(this,Backpack::class.java)
+            memberIntent.putExtra("tripid", intent.getStringExtra("tripid").toString())
+            startActivity(memberIntent)
         }
 
     }
@@ -120,8 +119,8 @@ class Member : AppCompatActivity() {
         val v = inflter.inflate(R.layout.add_member,null)
         /**set view*/
         val memberName = v.findViewById<TextInputEditText>(R.id.mName)
-        val memberTel = v.findViewById<TextInputEditText>(R.id.mTelephone)
-        val memberEmergency = v.findViewById<TextInputEditText>(R.id.mEmergency)
+        val memberTel = v.findViewById<TextInputEditText>(R.id.lDistrict)
+        val memberEmergency = v.findViewById<TextInputEditText>(R.id.lDesc)
         val memberAddress = v.findViewById<TextInputEditText>(R.id.mAddress)
 
         val addDialog = AlertDialog.Builder(this)
