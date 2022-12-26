@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -40,12 +41,16 @@ class Location : AppCompatActivity() {
     private lateinit var locationList: ArrayList<LocationData>
     private lateinit var locationAdapter: LocationAdapter
 
+    private lateinit var backToMainMenu: Button
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location)
 
         addbtn = findViewById(R.id.addingButton3)
+
+        backToMainMenu = findViewById(R.id.backToTheMainMenu)
 
         locationRecyclerView = findViewById(R.id.lRecycler)
         locationRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -57,6 +62,10 @@ class Location : AppCompatActivity() {
 
         addbtn.setOnClickListener{
             addinfo()
+        }
+
+        backToMainMenu.setOnClickListener {
+            back()
         }
     }
 
@@ -235,5 +244,11 @@ class Location : AppCompatActivity() {
     private fun isOnlyNumbers(q: String): Boolean {
         val regex = "^[0-9]*$".toRegex()
         return regex.matches(q)
+    }
+
+    private fun back(){
+        val backIntent = Intent(this@Location, MainActivity::class.java)
+        backIntent.putExtra("tripid_from_location", intent.getStringExtra("tripid")).toString()
+        startActivity(backIntent)
     }
 }

@@ -46,6 +46,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:visibility="visible"
             android:focusable="true">
 
             <RelativeLayout
@@ -78,6 +79,51 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/currentTripCard"
+            android:layout_width="match_parent"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_height="120dp"
+            app:cardCornerRadius="28dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:focusable="true">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#EDE8F6"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Current Trip"
+                    android:textColor="#233C6F"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="10dp"
+                    android:maxHeight="100dp"
+                    android:src="@drawable/luggage">
+
+                </ImageView>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:clickable="true"
