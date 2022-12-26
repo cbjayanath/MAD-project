@@ -27,7 +27,7 @@
         android:layout_marginTop="100dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/LRecycler"
+            android:id="@+id/lRecycler"
             android:layout_width="match_parent"
             android:layout_height="430dp"
             tools:listitem="@layout/list_location"/>

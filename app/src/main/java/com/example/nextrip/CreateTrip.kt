@@ -47,7 +47,7 @@ class CreateTrip : AppCompatActivity() {
 
             datePicker.addOnPositiveButtonClickListener {
                 // formatting date in dd-mm-yyyy format.
-                val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+                val dateFormatter = SimpleDateFormat("dd/MMMM/yyyy")
                 val date = dateFormatter.format(Date(it))
                 d_text.setText(date)
 

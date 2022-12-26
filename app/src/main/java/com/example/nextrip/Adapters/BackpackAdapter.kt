@@ -28,7 +28,7 @@ class BackpackAdapter (private val itemList: ArrayList<ItemData>): RecyclerView.
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
         holder.name.text = currentItem.name.toString()
-        holder.quantity.text = currentItem.quantity.toString()
+        holder.quantity.text = "Quantity : " + currentItem.quantity.toString()
         holder.isRented.text = currentItem.rented.toString()
     }
 
