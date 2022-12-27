@@ -159,10 +159,8 @@ class Location : AppCompatActivity() {
 
                 val hour = materialTimePicker.hour
                 val minute = materialTimePicker.minute
-
-                val dateFormatter = SimpleDateFormat("hh.mm a")
-                val time = dateFormatter.format(Time((hour + minute).toLong()))
-                locationArrivalTime.setText(time)
+//                val time = (hour+minute).toLong()
+//                locationArrivalTime.setText(time)
             }
         }
 
@@ -219,7 +217,7 @@ class Location : AppCompatActivity() {
 //                    setRented("One of my item")
 //                }
 
-                val location = LocationData(locationid, name, city, district, description, arrivalDate, arrivalTime, addedDate, addedTime, intent.getStringExtra("tripid").toString())
+                val location = LocationData(locationid, name, city, district, description, arrivalDate, arrivalTime, addedDate, addedTime, null, null, null, intent.getStringExtra("tripid").toString())
 
                 reference.child(locationid).setValue(location).addOnCompleteListener{
                     if(it.isSuccessful){
@@ -247,8 +245,8 @@ class Location : AppCompatActivity() {
     }
 
     private fun back(){
-        val backIntent = Intent(this@Location, MainActivity::class.java)
-        backIntent.putExtra("tripid_from_location", intent.getStringExtra("tripid")).toString()
+        val backIntent = Intent(this@Location, MainMenu::class.java)
+        backIntent.putExtra("tripid", intent.getStringExtra("tripid").toString())
         startActivity(backIntent)
     }
 }

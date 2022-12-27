@@ -122,7 +122,7 @@ class LocationDetails : AppCompatActivity() {
             val writer = QRCodeWriter()
 
             try {
-                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 50, 50)
+                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 100, 100)
                 val width = bitMatrix.width
                 val height = bitMatrix.height
                 val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)

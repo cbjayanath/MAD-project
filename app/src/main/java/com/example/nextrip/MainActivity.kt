@@ -20,37 +20,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var card01: CardView
-    private lateinit var currentTripCard: CardView
+    private lateinit var currenttripcard: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         card01 = findViewById(R.id.c1)
-        currentTripCard = findViewById(R.id.currentTripCard)
+        currenttripcard = findViewById(R.id.currentTripCard)
 
         card01.setOnClickListener{
                 startActivity(Intent(this,CreateTrip::class.java))
         }
 
-        checkIsCurrentTripAvailable()
-
-        currentTripCard.setOnClickListener{
-            back()
-        }
-
         currentUser()
-    }
-
-    private fun checkIsCurrentTripAvailable() {
-
-        if(intent.getStringExtra("tripid_from_location").toString().isNotEmpty()){
-            card01.visibility = View.GONE
-            currentTripCard.visibility = View.VISIBLE
-        }else{
-            card01.visibility = View.VISIBLE
-            currentTripCard.visibility = View.GONE
-        }
     }
 
     private fun currentUser() {
@@ -67,11 +50,5 @@ class MainActivity : AppCompatActivity() {
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }
-    }
-
-    private fun back(){
-        val backIntent = Intent(this@MainActivity, Location::class.java)
-        backIntent.putExtra("tripid", intent.getStringExtra("tripid_from_location")).toString()
-        startActivity(backIntent)
     }
 }
