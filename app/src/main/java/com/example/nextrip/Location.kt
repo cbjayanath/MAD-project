@@ -42,6 +42,7 @@ class Location : AppCompatActivity() {
     private lateinit var locationAdapter: LocationAdapter
 
     private lateinit var backToMainMenu: Button
+    private lateinit var btnfinish: Button
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +52,7 @@ class Location : AppCompatActivity() {
         addbtn = findViewById(R.id.addingButton3)
 
         backToMainMenu = findViewById(R.id.backToTheMainMenu)
+        btnfinish = findViewById(R.id.finishBtn)
 
         locationRecyclerView = findViewById(R.id.lRecycler)
         locationRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -66,6 +68,10 @@ class Location : AppCompatActivity() {
 
         backToMainMenu.setOnClickListener {
             back()
+        }
+
+        btnfinish.setOnClickListener {
+            forward()
         }
     }
 
@@ -200,24 +206,7 @@ class Location : AppCompatActivity() {
                 val addedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"))
                 val addedTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a"))
 
-//                val words = desc.lowercase(Locale.getDefault()).split("\\s+".toRegex())
-//
-//                val isrent: Boolean = "rent" in words
-//                val isrented: Boolean = "rented" in words
-//
-//                val isfriend: Boolean = "friend" in words
-//                val ismemeber: Boolean = "member" in words
-//                val ismr: Boolean = "mr" in words
-//
-//                if(isrent || isrented){
-//                    setRented("A rented item*")
-//                }else if(isfriend || ismemeber || ismr){
-//                    setRented("One member item")
-//                }else{
-//                    setRented("One of my item")
-//                }
-
-                val location = LocationData(locationid, name, city, district, description, arrivalDate, arrivalTime, addedDate, addedTime, null, null, null, intent.getStringExtra("tripid").toString())
+                val location = LocationData(locationid, name, city, district, description, arrivalDate, arrivalTime, addedDate, addedTime, "Not yet completed", null, null, intent.getStringExtra("tripid").toString())
 
                 reference.child(locationid).setValue(location).addOnCompleteListener{
                     if(it.isSuccessful){
@@ -246,6 +235,12 @@ class Location : AppCompatActivity() {
 
     private fun back(){
         val backIntent = Intent(this@Location, MainMenu::class.java)
+        backIntent.putExtra("tripid", intent.getStringExtra("tripid").toString())
+        startActivity(backIntent)
+    }
+
+    private fun forward(){
+        val backIntent = Intent(this@Location, CompleteTrip::class.java)
         backIntent.putExtra("tripid", intent.getStringExtra("tripid").toString())
         startActivity(backIntent)
     }

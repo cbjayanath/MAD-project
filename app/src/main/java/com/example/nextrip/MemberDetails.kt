@@ -166,6 +166,8 @@ class MemberDetails : AppCompatActivity() {
         memberEmergency.setText(intent.getStringExtra("memberemcontact").toString())
         memberAddress.setText(intent.getStringExtra("memberaddress").toString())
 
+        memberTel.visibility = View.GONE
+
         val addDialog = AlertDialog.Builder(this)
         addDialog.setView(v)
         addDialog.setPositiveButton("Add"){
@@ -195,11 +197,11 @@ class MemberDetails : AppCompatActivity() {
                 database = FirebaseDatabase.getInstance()
                 reference = database.getReference("member")
 
-                val member = MemberData(name, number, emergency, address, intent.getStringExtra("tripid"))
+                val member = MemberData(name, intent.getStringExtra("memberphonenumber").toString(), emergency, address, intent.getStringExtra("tripid").toString())
 
-                reference.child(number).child(member.toString()).setValue(member).addOnCompleteListener{
+                reference.child(intent.getStringExtra("memberphonenumber").toString()).setValue(member).addOnCompleteListener{
                     if(it.isSuccessful){
-                        Toast.makeText(this,"$name Added Successfully!",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"$name Updated Successfully!",Toast.LENGTH_LONG).show()
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this,"Cannot add $name",Toast.LENGTH_LONG).show()

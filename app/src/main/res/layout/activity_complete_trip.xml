@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CompleteTrip">
+
+    <ImageView
+        android:id="@+id/complete_trip_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150dp"
+        app:srcCompat="@drawable/complete"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <TextView
+        android:id="@+id/complete_txt_show_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="460dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Congratulations! You successfully completed your wonderful journey. See you later on your next trip."
+        android:textColor="#8BC34A"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/backToTheMainMenu"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/rounded_textview"
+        android:text="Go to the Main Menu">
+
+    </Button>
+
+</RelativeLayout>

@@ -100,6 +100,44 @@
             android:textStyle="normal" />
 
         <ImageView
+            android:id="@+id/location_details_show_img_hinticon"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/hint" />
+
+        <TextView
+            android:id="@+id/location_details_txt_show_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="40dp"
+            android:text="Hint"
+            android:textColor="#FFFFFF"
+            android:background="#FFC107"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/location_details_txt_show_ignore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="40dp"
+            android:text="ignore"
+            android:textColor="#673AB7"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textStyle="normal" />
+
+        <ImageView
             android:id="@+id/location_details_show_img_qrcode"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -210,10 +248,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="50dp"
             android:layout_marginRight="25dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             app:backgroundTint="@color/white"
             android:background="@drawable/rounded_textview"
             android:textColor="@color/blue"

@@ -67,8 +67,8 @@ class CreateTrip : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("trip")
 
-        val tripname = tripname.text.toString()
-        val tripdesc = tripdescription.text.toString()
+        val tripname = tripname.text?.trim().toString()
+        val tripdesc = tripdescription.text?.trim().toString()
 
         if(tripname.isEmpty()){
             Toast.makeText(this, "Trip name field is required!", Toast.LENGTH_LONG).show()
@@ -82,7 +82,7 @@ class CreateTrip : AppCompatActivity() {
 
             val tripid = reference.push().key!!
 
-            val trip = TripData(tripid, tripname, tripdesc, d_text.text.toString(), d_text.text.toString(), userid, false)
+            val trip = TripData(tripid, tripname, tripdesc, d_text.text.toString(),null, null, null, userid)
 
             reference.child(tripid).setValue(trip).addOnCompleteListener{
                 if(it.isSuccessful){

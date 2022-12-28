@@ -7,22 +7,32 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.compose.ui.text.toLowerCase
+import com.example.nextrip.model.LocationData
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
 import org.w3c.dom.Text
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class LocationDetails : AppCompatActivity() {
 
@@ -39,6 +49,9 @@ class LocationDetails : AppCompatActivity() {
     private lateinit var time: TextView
     private lateinit var complete: TextView
     private lateinit var locationQR: ImageView
+    private lateinit var hinticon: ImageView
+    private lateinit var hint: TextView
+    private lateinit var ignore: TextView
 
     private lateinit var btnmap: FloatingActionButton
     private lateinit var btnnavigation: FloatingActionButton
@@ -62,6 +75,9 @@ class LocationDetails : AppCompatActivity() {
         time = findViewById(R.id.location_details_txt_show_time)
         complete = findViewById(R.id.location_details_txt_show_completed)
         locationQR = findViewById(R.id.location_details_show_img_qrcode)
+        hinticon = findViewById(R.id.location_details_show_img_hinticon)
+        hint = findViewById(R.id.location_details_txt_show_hint)
+        ignore = findViewById(R.id.location_details_txt_show_ignore)
 
         btnmap = findViewById(R.id.details_location_btn_map)
         btnnavigation = findViewById(R.id.details_location_btn_navigation)
@@ -92,6 +108,10 @@ class LocationDetails : AppCompatActivity() {
             shareLocation(intent.getStringExtra("locationname").toString(), intent.getStringExtra("locationcity").toString(), intent.getStringExtra("locationdistrict").toString(), intent.getStringExtra("locationdescription").toString())
         }
 
+        btnedit.setOnClickListener{
+            updateLocationInfo()
+        }
+
         btndelete.setOnClickListener{
             deleteRecord(intent.getStringExtra("locationid").toString(), intent.getStringExtra("locationname").toString())
         }
@@ -109,6 +129,179 @@ class LocationDetails : AppCompatActivity() {
         date.text = intent.getStringExtra("locationaddeddate").toString() + " - " + intent.getStringExtra("locationarrivaldate").toString()
         time.text = intent.getStringExtra("locationaddedtime").toString() + " - " + intent.getStringExtra("locationarrivaltime").toString()
 
+        val words = intent.getStringExtra("locationdescription").toString().lowercase(Locale.getDefault()).split("\\s+".toRegex())
+
+        val ishistory: Boolean = "history" in words
+        val ishistorical: Boolean = "historical" in words
+        val isking: Boolean = "king" in words
+
+        val isnature: Boolean = "nature" in words
+        val isnatural: Boolean = "natural" in words
+        val ismountain: Boolean = "mountain" in words
+        val iswaterfall: Boolean = "waterfall" in words
+        val isforest: Boolean = "forest" in words
+
+        if(ishistory || ishistorical || isking){
+
+            hinticon.visibility = View.VISIBLE
+            hint.visibility = View.VISIBLE
+            ignore.visibility = View.VISIBLE
+
+            hint.text = "Seems like you will see one of the historical places. Find out more about the history of this place before having fun. It will help you to update your knowledge about history."
+
+            ignore.setOnClickListener {
+                hideHint()
+            }
+
+        }else if(isnatural || isnature){
+
+            hinticon.visibility = View.VISIBLE
+            hint.visibility = View.VISIBLE
+            ignore.visibility = View.VISIBLE
+
+            hint.text = "Seems like you will see the beauty of nature. Have fun and save nature for other travelers. Have a nice trip!"
+
+            ignore.setOnClickListener {
+                hideHint()
+            }
+
+        }else if(ismountain){
+
+            hinticon.visibility = View.VISIBLE
+            hint.visibility = View.VISIBLE
+            ignore.visibility = View.VISIBLE
+
+            hint.text = "Seems like you will see a mountain. If you have permission and more time, we suggest climbing the mountain. It will be more funny and memorable."
+
+            ignore.setOnClickListener {
+                hideHint()
+            }
+
+        }else if(iswaterfall){
+
+            hinticon.visibility = View.VISIBLE
+            hint.visibility = View.VISIBLE
+            ignore.visibility = View.VISIBLE
+
+            hint.text = "Seems like you will see a beautiful waterfall. If you have permission and more time we suggest swimming, bathing, and other fun activities. Before having fun make sure that the waterfall is safe."
+
+            ignore.setOnClickListener {
+                hideHint()
+            }
+
+        }else if(isforest){
+
+            hinticon.visibility = View.VISIBLE
+            hint.visibility = View.VISIBLE
+            ignore.visibility = View.VISIBLE
+
+            hint.text = "Seems like you will see a beautiful forest. Take a lot of time and see the beauty of nature with your eyes. It will be nicer than taking photos from electronic devices quickly."
+
+            ignore.setOnClickListener {
+                hideHint()
+            }
+
+        }else{
+            hideHint()
+        }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun updateLocationInfo() {
+        val inflter = LayoutInflater.from(this)
+        val v = inflter.inflate(R.layout.add_location,null)
+        /**set view*/
+        val locationName = v.findViewById<TextInputEditText>(R.id.lName)
+        val locationCity = v.findViewById<TextInputEditText>(R.id.lCity)
+        val locationDistrict = v.findViewById<TextInputEditText>(R.id.lDistrict)
+        val locationDescription = v.findViewById<TextInputEditText>(R.id.lDesc)
+        val locationArrivalDate = v.findViewById<TextInputEditText>(R.id.arrivalDate)
+        val locationArrivalTime = v.findViewById<TextInputEditText>(R.id.arrivalTime)
+
+
+        locationArrivalDate.setOnClickListener(){
+            val datePicker = MaterialDatePicker.Builder.datePicker().build()
+            datePicker.show(supportFragmentManager, "DatePicker")
+
+            datePicker.addOnPositiveButtonClickListener {
+                // formatting date in dd-mm-yyyy format.
+                val dateFormatter = SimpleDateFormat("dd/MMMM/yyyy")
+                val date = dateFormatter.format(Date(it))
+                locationArrivalDate.setText(date)
+            }
+        }
+
+        locationArrivalTime.setOnClickListener {
+
+            val materialTimePicker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H).setHour(android.icu.util.Calendar.HOUR_OF_DAY).setMinute(android.icu.util.Calendar.MINUTE).setTitleText("Arrival Time").build()
+            materialTimePicker.show(supportFragmentManager, "TimePicker")
+
+            materialTimePicker.addOnPositiveButtonClickListener {
+
+                val hour = materialTimePicker.hour
+                val minute = materialTimePicker.minute
+//                val time = (hour+minute).toLong()
+//                locationArrivalTime.setText(time)
+            }
+        }
+
+        val addDialog = AlertDialog.Builder(this)
+        addDialog.setView(v)
+        addDialog.setPositiveButton("Add"){
+                dialog,_->
+
+            val name = locationName.text?.trim().toString()
+            val city = locationCity.text?.trim().toString()
+            val district = locationDistrict.text?.trim().toString()
+            val description = locationDescription.text?.trim().toString()
+            val arrivalDate = locationArrivalDate.text?.trim().toString()
+            val arrivalTime = locationArrivalTime.text?.trim().toString()
+
+            if(name.isEmpty()){
+                Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
+            }else if(isOnlyNumbers(name)){
+                Toast.makeText(this, "Cannot add locations with number!", Toast.LENGTH_LONG).show()
+            }else if(city.isEmpty()){
+                Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
+            }else if(isOnlyNumbers(city)){
+                Toast.makeText(this, "Cannot add city with number!", Toast.LENGTH_LONG).show()
+            }else if(district.isEmpty()){
+                Toast.makeText(this, "District field is required!", Toast.LENGTH_LONG).show()
+            }else if(isOnlyNumbers(district)){
+                Toast.makeText(this, "Cannot add city with number!", Toast.LENGTH_LONG).show()
+            }else if(description.isEmpty()){
+                Toast.makeText(this, "Description field is required! Say something about $name", Toast.LENGTH_LONG).show()
+            }else{
+
+                database = FirebaseDatabase.getInstance()
+                reference = database.getReference("location")
+
+                val locationid = intent.getStringExtra("locationid").toString()
+
+                val addedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"))
+                val addedTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a"))
+
+                val location = LocationData(locationid, name, city, district, description, arrivalDate, arrivalTime, addedDate, addedTime, "Not yet completed", null, null, intent.getStringExtra("tripid").toString())
+
+                reference.child(locationid).setValue(location).addOnCompleteListener{
+                    if(it.isSuccessful){
+                        Toast.makeText(this,"$name Updated Successfully!", Toast.LENGTH_LONG).show()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this,"Cannot add $name", Toast.LENGTH_LONG).show()
+                }
+
+                dialog.dismiss()
+
+            }
+        }
+        addDialog.setNegativeButton("Cancel"){
+                dialog,_->
+            dialog.dismiss()
+        }
+        addDialog.create()
+        addDialog.show()
     }
 
     private fun showLocationQR() {
@@ -240,6 +433,17 @@ class LocationDetails : AppCompatActivity() {
             btndelete.visibility = View.VISIBLE
             complete.visibility = View.GONE
         }
+    }
+
+    private fun hideHint(){
+        hinticon.visibility = View.GONE
+        hint.visibility = View.GONE
+        ignore.visibility = View.GONE
+    }
+
+    private fun isOnlyNumbers(q: String): Boolean {
+        val regex = "^[0-9]*$".toRegex()
+        return regex.matches(q)
     }
 
     private fun back(){

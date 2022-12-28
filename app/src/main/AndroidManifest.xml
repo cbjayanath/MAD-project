@@ -13,6 +13,27 @@
         android:theme="@style/Theme.NexTrip"
         tools:targetApi="31">
         <activity
+            android:name=".CompleteTrip"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Finish"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Confirmation"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainMenu"
             android:exported="false">
             <meta-data

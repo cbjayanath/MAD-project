@@ -29,6 +29,16 @@
             android:padding="10dp">
 
             <TextView
+                android:id="@+id/list_location_show_iscompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="@string/locationname"
+                android:textColor="#EAB517"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <TextView
                 android:id="@+id/list_location_show_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

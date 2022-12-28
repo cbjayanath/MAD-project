@@ -34,6 +34,7 @@ class LocationAdapter (private val locationList: ArrayList<LocationData>): Recyc
         holder.description.text = currentLocation.description.toString()
         holder.arrivaldate.text = currentLocation.arrivaldate.toString()
         holder.arrivaltime.text = currentLocation.addedTime.toString()
+        holder.complete.text = currentLocation.complete.toString()
     }
 
     override fun getItemCount(): Int {
@@ -47,6 +48,7 @@ class LocationAdapter (private val locationList: ArrayList<LocationData>): Recyc
         val description : TextView = itemView.findViewById(R.id.list_location_show_desc)
         val arrivaldate : TextView = itemView.findViewById(R.id.list_location_show_arrival_date)
         val arrivaltime : TextView = itemView.findViewById(R.id.list_location_show_arrival_time)
+        val complete : TextView = itemView.findViewById(R.id.list_location_show_iscompleted)
 
 
         init {

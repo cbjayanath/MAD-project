@@ -6,5 +6,7 @@ data class TripData(
     var tripdescription: String ?= null,
     var startDate: String ?= null,
     var endDate: String ?= null,
-    var userid: String ?= null,
-    var isEnd: Boolean ?= null)
+    var endTime: String ?= null,
+    var end: String ?= null,
+    var userid: String ?= null
+)
