@@ -140,8 +140,8 @@ class Location : AppCompatActivity() {
         val locationCity = v.findViewById<TextInputEditText>(R.id.lCity)
         val locationDistrict = v.findViewById<TextInputEditText>(R.id.lDistrict)
         val locationDescription = v.findViewById<TextInputEditText>(R.id.lDesc)
-        val locationArrivalDate = v.findViewById<TextInputEditText>(R.id.arrivalDate)
-        val locationArrivalTime = v.findViewById<TextInputEditText>(R.id.arrivalTime)
+        var locationArrivalDate = v.findViewById<TextInputEditText>(R.id.arrivalDate)
+        var locationArrivalTime = v.findViewById<TextInputEditText>(R.id.arrivalTime)
 
 
         locationArrivalDate.setOnClickListener(){
@@ -158,16 +158,63 @@ class Location : AppCompatActivity() {
 
         locationArrivalTime.setOnClickListener {
 
-            val materialTimePicker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H).setHour(android.icu.util.Calendar.HOUR_OF_DAY).setMinute(android.icu.util.Calendar.MINUTE).setTitleText("Arrival Time").build()
-            materialTimePicker.show(supportFragmentManager, "TimePicker")
+            val materialTimePicker: MaterialTimePicker = MaterialTimePicker.Builder()
+                .setTitleText("SELECT YOUR TIME")
+                .setHour(12)
+                .setMinute(10)
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .build()
+            materialTimePicker.show(supportFragmentManager,"TimePicker")
 
-            materialTimePicker.addOnPositiveButtonClickListener {
+            materialTimePicker.addOnPositiveButtonClickListener{
+                val pickedHour = materialTimePicker.hour
+                val pickedMinute = materialTimePicker.minute
 
-                val hour = materialTimePicker.hour
-                val minute = materialTimePicker.minute
-//                val time = (hour+minute).toLong()
-//                locationArrivalTime.setText(time)
+                val formattedTime: String = when {
+                    pickedHour > 12 -> {
+                        if (pickedMinute < 10) {
+                            "${materialTimePicker.hour - 12}:0${materialTimePicker.minute} pm"
+                        } else {
+                            "${materialTimePicker.hour - 12}:${materialTimePicker.minute} pm"
+                        }
+                    }
+                    pickedHour == 12 -> {
+                        if (pickedMinute < 10) {
+                            "${materialTimePicker.hour}:0${materialTimePicker.minute} pm"
+                        } else {
+                            "${materialTimePicker.hour}:${materialTimePicker.minute} pm"
+                        }
+                    }
+                    pickedHour == 0 -> {
+                        if (pickedMinute < 10) {
+                            "${materialTimePicker.hour + 12}:0${materialTimePicker.minute} am"
+                        } else {
+                            "${materialTimePicker.hour + 12}:${materialTimePicker.minute} am"
+                        }
+                    }
+                    else -> {
+                        if (pickedMinute < 10) {
+                            "${materialTimePicker.hour}:0${materialTimePicker.minute} am"
+                        } else {
+                            "${materialTimePicker.hour}:${materialTimePicker.minute} am"
+                        }
+                    }
+                }
+
+                locationArrivalTime.setText(formattedTime)
             }
+
+
+//            val materialTimePicker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H).setHour(android.icu.util.Calendar.HOUR_OF_DAY).setMinute(android.icu.util.Calendar.MINUTE).setTitleText("Arrival Time").build()
+//            materialTimePicker.show(supportFragmentManager, "TimePicker")
+//
+//            materialTimePicker.addOnPositiveButtonClickListener {
+//
+//                val hour = materialTimePicker.hour
+//                val minute = materialTimePicker.minute
+////                val time = (hour+minute).toLong()
+////                locationArrivalTime.setText(time)
+//            }
         }
 
         val addDialog = AlertDialog.Builder(this)
