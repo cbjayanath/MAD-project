@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +14,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.compose.ui.text.toLowerCase
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nextrip.model.LocationData
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
@@ -28,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
-import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -123,11 +120,11 @@ class LocationDetails : AppCompatActivity() {
 
     private fun showLocationDetails() {
         name.text = intent.getStringExtra("locationname").toString()
-        city.text = intent.getStringExtra("locationcity").toString() + "city"
-        district.text = "in " + intent.getStringExtra("locationdistrict").toString() + " district"
+        city.text = intent.getStringExtra("locationcity").toString() + " City"
+        district.text =  intent.getStringExtra("locationdistrict").toString() + " District"
         desc.text = intent.getStringExtra("locationdescription").toString()
-        date.text = intent.getStringExtra("locationaddeddate").toString() + " - " + intent.getStringExtra("locationarrivaldate").toString()
-        time.text = intent.getStringExtra("locationaddedtime").toString() + " - " + intent.getStringExtra("locationarrivaltime").toString()
+        date.text = intent.getStringExtra("locationaddeddate").toString() + " to " + intent.getStringExtra("locationarrivaldate").toString()
+        time.text = intent.getStringExtra("locationaddedtime").toString() + " to " + intent.getStringExtra("locationarrivaltime").toString()
 
         val words = intent.getStringExtra("locationdescription").toString().lowercase(Locale.getDefault()).split("\\s+".toRegex())
 
@@ -424,7 +421,9 @@ class LocationDetails : AppCompatActivity() {
             btnedit.visibility = View.GONE
             btndelete.visibility = View.GONE
             complete.visibility = View.VISIBLE
-
+            btnnavigation.visibility=View.GONE
+            btnshare.x=100f
+            btnmap.x=210f
             complete.text = "Completed on $date at $time"
 
         }else{

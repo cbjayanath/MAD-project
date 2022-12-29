@@ -22,14 +22,17 @@
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:orientation="horizontal"
         android:layout_marginTop="100dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lRecycler"
             android:layout_width="match_parent"
-            android:layout_height="430dp"
+            android:layout_height="500dp"
+
+
+
             tools:listitem="@layout/list_location"/>
     </LinearLayout>
 
@@ -55,12 +58,12 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
+
         android:layout_marginEnd="50dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_textview"
-        android:text="Back to the Main Menu">
+        android:text="Back to Main Menu">
 
     </Button>
 
@@ -72,10 +75,10 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="50dp"
+
         android:layout_marginEnd="50dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/rounded_textview"
         android:text="finish">
 

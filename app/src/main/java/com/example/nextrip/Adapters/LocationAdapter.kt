@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nextrip.Location
 import com.example.nextrip.R
 import com.example.nextrip.model.LocationData
 
@@ -29,8 +28,8 @@ class LocationAdapter (private val locationList: ArrayList<LocationData>): Recyc
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentLocation = locationList[position]
         holder.name.text = currentLocation.name.toString()
-        holder.city.text = currentLocation.city.toString() + " city"
-        holder.district.text = "in " + currentLocation.district.toString() + " district"
+        holder.city.text = currentLocation.city.toString()
+        holder.district.text =  currentLocation.district.toString()
         holder.description.text = currentLocation.description.toString()
         holder.arrivaldate.text = currentLocation.arrivaldate.toString()
         holder.arrivaltime.text = currentLocation.addedTime.toString()
