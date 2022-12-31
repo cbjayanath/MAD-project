@@ -125,6 +125,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/c2"
             android:layout_width="match_parent"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
@@ -165,6 +166,7 @@
             android:layout_width="match_parent"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
+            android:visibility="gone"
             android:layout_height="120dp"
             app:cardCornerRadius="28dp"
             android:layout_marginTop="15dp"
@@ -202,6 +204,7 @@
             android:layout_width="match_parent"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
+            android:visibility="gone"
             android:layout_height="120dp"
             app:cardCornerRadius="28dp"
             android:layout_marginTop="15dp"

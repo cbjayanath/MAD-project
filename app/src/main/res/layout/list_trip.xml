@@ -14,9 +14,10 @@
     android:layout_marginEnd="20dp">
 
     <LinearLayout
-        android:id="@+id/component_item"
+        android:id="@+id/component_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FDF28D"
         android:orientation="horizontal">
 
 
@@ -30,14 +31,14 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/list_item_show_isRentedItem"
+                android:id="@+id/list_trip_show_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:text="@string/isrenteditem"
-                android:textColor="#0BDC51"
-                android:textSize="20sp"
-                android:textStyle="italic" />
+                android:text="tripname"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,43 +47,22 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/list_item_show_name"
+                    android:id="@+id/list_trip_show_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
-                    android:text="@string/itemname"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/list_item_show_quantity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="Quantity"
-                    android:textColor="@android:color/darker_gray"
+                    android:text="tripdescription"
+                    android:textColor="#047785"
                     android:textSize="18sp"
                     android:textStyle="normal" />
 
-
             </RelativeLayout>
-
-
-
 
         </LinearLayout>
 
-
-
     </LinearLayout>
-
-
 
 </androidx.cardview.widget.CardView>

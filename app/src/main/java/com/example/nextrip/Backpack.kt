@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.BackpackAdapter
-import com.example.nextrip.Adapters.MembersAdapter
 import com.example.nextrip.model.ItemData
-import com.example.nextrip.model.MemberData
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
@@ -126,14 +123,14 @@ class Backpack : AppCompatActivity() {
                 dialog,_->
 
             val name = itemName.text?.trim().toString()
-            val quantity = itemQuantity.text?.trim().toString().toInt()
+            val quantity = itemQuantity.text?.trim().toString()
             val desc = itemDescription.text?.trim().toString()
 
             if(name.isEmpty()){
                 Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
-            }else if(quantity.toString().isEmpty()){
+            }else if(quantity.isEmpty()){
                 Toast.makeText(this, "quantity is required!", Toast.LENGTH_LONG).show()
-            }else if(!isOnlyNumbers(quantity.toString())){
+            }else if(!isOnlyNumbers(quantity)){
                 Toast.makeText(this, "Give quantity as number!", Toast.LENGTH_LONG).show()
             }else if(desc.isEmpty()){
                 Toast.makeText(this, "Description is required!", Toast.LENGTH_LONG).show()

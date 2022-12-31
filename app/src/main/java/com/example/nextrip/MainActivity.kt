@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var card01: CardView
     private lateinit var currenttripcard: CardView
+    private lateinit var seemytrip: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +29,14 @@ class MainActivity : AppCompatActivity() {
 
         card01 = findViewById(R.id.c1)
         currenttripcard = findViewById(R.id.currentTripCard)
+        seemytrip = findViewById(R.id.c2)
 
         card01.setOnClickListener{
                 startActivity(Intent(this,CreateTrip::class.java))
+        }
+
+        seemytrip.setOnClickListener {
+            seeTrips()
         }
 
         currentUser()
@@ -50,5 +56,10 @@ class MainActivity : AppCompatActivity() {
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }
+    }
+
+    private fun seeTrips(){
+        val backIntent = Intent(this@MainActivity, MyTrips::class.java)
+        startActivity(backIntent)
     }
 }

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CompleteTripInformation">
+
+    <ImageView
+        android:id="@+id/details_trip_btn_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="350dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <TextView
+        android:id="@+id/trip_txt_show_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="60dp"
+        android:textSize="38dp"
+        android:textColor="@color/black"
+        android:text="tripname" />
+
+    <TextView
+        android:id="@+id/trip_txt_show_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="60dp"
+        android:textSize="18dp"
+        android:textColor="@color/teal_700"
+        android:text="tripdescription" />
+
+    <TextView
+        android:id="@+id/trip_txt_show_datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="235dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="60dp"
+        android:textSize="14dp"
+        android:textColor="@color/blue"
+        android:text="tripdatetime" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_trip_btn_members"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/members"
+        app:backgroundTint="#FFA829"
+        app:tint="@color/black"
+        android:contentDescription="Members" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_trip_btn_backpack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="Backpack"
+        android:src="@drawable/backpack"
+        app:backgroundTint="#FFA829"
+        app:tint="@color/black" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_trip_btn_locations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="241dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/location"
+        app:backgroundTint="#FFA829"
+        app:tint="@color/black"
+        android:contentDescription="Locations" />
+
+    <Button
+        android:id="@+id/deleteTripBtn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/rounded_textview"
+        android:textColor="@color/red01"
+        android:text="Delete Trip">
+
+    </Button>
+
+    <Button
+        android:id="@+id/deleteTripConfirmBtn"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/rounded_textview"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:text="Confirm">
+
+    </Button>
+
+</RelativeLayout>

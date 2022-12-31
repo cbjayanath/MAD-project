@@ -79,10 +79,11 @@ class CreateTrip : AppCompatActivity() {
         }else{
 
             val userid = firebaseAuth.currentUser?.uid.toString()
+            val end = userid + "no"
 
             val tripid = reference.push().key!!
 
-            val trip = TripData(tripid, tripname, tripdesc, d_text.text.toString(),null, null, null, userid)
+            val trip = TripData(tripid, tripname, tripdesc, d_text.text.toString(),null, null, end, userid)
 
             reference.child(tripid).setValue(trip).addOnCompleteListener{
                 if(it.isSuccessful){

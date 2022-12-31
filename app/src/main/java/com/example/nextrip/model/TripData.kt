@@ -4,9 +4,9 @@ data class TripData(
     var tripid: String ?= null,
     var tripname: String ?= null,
     var tripdescription: String ?= null,
-    var startDate: String ?= null,
-    var endDate: String ?= null,
-    var endTime: String ?= null,
+    var startdate: String ?= null,
+    var enddate: String ?= null,
+    var endtime: String ?= null,
     var end: String ?= null,
     var userid: String ?= null
 )

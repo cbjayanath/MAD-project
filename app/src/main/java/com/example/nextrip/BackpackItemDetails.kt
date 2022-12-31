@@ -14,7 +14,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.time.temporal.TemporalAccessor
 import java.util.*
 
 class BackpackItemDetails : AppCompatActivity() {
@@ -113,14 +112,14 @@ class BackpackItemDetails : AppCompatActivity() {
                 dialog,_->
 
             val name = itemName.text?.trim().toString()
-            val quantity = itemQuantity.text?.trim().toString().toInt()
+            val quantity = itemQuantity.text?.trim().toString()
             val desc = itemDescription.text?.trim().toString()
 
             if(name.isEmpty()){
                 Toast.makeText(this, "Name field is required!", Toast.LENGTH_LONG).show()
-            }else if(quantity.toString().isEmpty()){
+            }else if(quantity.isEmpty()){
                 Toast.makeText(this, "quantity is required!", Toast.LENGTH_LONG).show()
-            }else if(!isOnlyNumbers(quantity.toString())){
+            }else if(!isOnlyNumbers(quantity)){
                 Toast.makeText(this, "Give quantity as number!", Toast.LENGTH_LONG).show()
             }else if(desc.isEmpty()){
                 Toast.makeText(this, "Description is required!", Toast.LENGTH_LONG).show()
@@ -180,7 +179,7 @@ class BackpackItemDetails : AppCompatActivity() {
 
     private fun shareItem(name: String ?= null, quantity: String ?= null, desc: String ?= null) {
 
-        val itemDetail = "THis item is $name and $desc"
+        val itemDetail = "This item is $name and have $quantity number of items. $desc"
 
         val intent = Intent()
         intent.action = Intent.ACTION_SEND

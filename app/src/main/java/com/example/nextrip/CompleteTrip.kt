@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.time.LocalDateTime
@@ -16,6 +17,7 @@ class CompleteTrip : AppCompatActivity() {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var backtomainmenu: Button
 
@@ -37,16 +39,19 @@ class CompleteTrip : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("trip").child(id)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+        val end = firebaseAuth.currentUser?.uid.toString() + "end"
+
         val endDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"))
         val endTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a"))
 
-        reference.child("end").setValue("yes").addOnCompleteListener{
+        reference.child("end").setValue(end).addOnCompleteListener{
             if(it.isSuccessful){
 
-                reference.child("endDate").setValue(endDate).addOnCompleteListener{
+                reference.child("enddate").setValue(endDate).addOnCompleteListener{
                     if(it.isSuccessful){
 
-                        reference.child("endTime").setValue(endTime).addOnCompleteListener{
+                        reference.child("endtime").setValue(endTime).addOnCompleteListener{
                             if(it.isSuccessful){
                                 Toast.makeText(this, "Your trip completed successfully!", Toast.LENGTH_LONG).show()
                                 back()
@@ -67,6 +72,7 @@ class CompleteTrip : AppCompatActivity() {
 
     private fun back(){
         val backIntent = Intent(this@CompleteTrip, MainActivity::class.java)
+        backIntent.putExtra("tripid", intent.getStringExtra("tripid").toString())
         startActivity(backIntent)
     }
 }
