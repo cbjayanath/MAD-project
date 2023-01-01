@@ -8,9 +8,11 @@ import android.location.Location
 import android.location.LocationManager
 import android.location.LocationRequest
 import android.net.Uri
+import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.text.format.Formatter.formatIpAddress
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
@@ -18,6 +20,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import java.util.*
 import java.util.jar.Manifest
 
 class MainMenu : AppCompatActivity() {
@@ -45,6 +48,9 @@ class MainMenu : AppCompatActivity() {
             openNearByHotelsMap()
         }
 
+        val wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+        val ipaddress = formatIpAddress(wifiManager.connectionInfo.ipAddress)
+
     }
 
     private fun forword(){
@@ -59,7 +65,7 @@ class MainMenu : AppCompatActivity() {
 //        mapIntent.setPackage("com.google.android.apps.maps")
 //        startActivity(mapIntent)
 
-        val backIntent = Intent(this@MainMenu, MapsActivity_CurrentLocation_Hotels::class.java)
+        val backIntent = Intent(this@MainMenu, Member::class.java)
         //backIntent.putExtra("tripid", intent.getStringExtra("tripid")).toString()
         startActivity(backIntent)
     }

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -30,11 +31,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAgrbOqI2Jey6a-AMuM7QEq2nrYob-IvXs" />
-
-        <activity
-            android:name=".MapsActivity_CurrentLocation_Hotels"
-            android:exported="false"
-            android:label="@string/title_activity_maps_current_location_hotels" />
         <activity
             android:name=".LocationCompleted"
             android:exported="false">

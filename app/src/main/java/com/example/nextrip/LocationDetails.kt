@@ -313,7 +313,7 @@ class LocationDetails : AppCompatActivity() {
     }
 
     private fun showInMap(name: String ?= null){
-        val gmmIntentUri = Uri.parse("geo:0,0?q=$name")
+        val gmmIntentUri = Uri.parse("geo:0,0?q=$name&q=restaurants")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(mapIntent)
