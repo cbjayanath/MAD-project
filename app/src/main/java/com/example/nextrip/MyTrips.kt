@@ -1,21 +1,18 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nextrip.Adapters.BackpackAdapter
 import com.example.nextrip.Adapters.TripsAdapter
-import com.example.nextrip.model.ItemData
 import com.example.nextrip.model.TripData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.util.ArrayList
 
-class MyTrips : AppCompatActivity() {
+class  MyTrips : AppCompatActivity() {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference

@@ -9,9 +9,7 @@
     app:cardElevation="3dp"
     app:cardMaxElevation="5dp"
     app:cardUseCompatPadding="true"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp">
+    android:layout_margin="20dp">
 
     <LinearLayout
         android:id="@+id/component_item"

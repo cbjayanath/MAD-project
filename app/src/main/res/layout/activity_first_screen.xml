@@ -11,28 +11,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="220dp"
-        android:layout_height="90dp"
+        android:layout_width="230dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="300dp"
         android:src="@drawable/nextrip"
         />
-    <Button
-        android:id="@+id/goBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="250dp"
-        android:text="Go"
-        android:textStyle="bold"
-        android:textColor="@color/blue"
 
-        android:backgroundTint="@color/white"
-
-
-        style="@style/Widget.MaterialComponents.Button"
-        >
-
-    </Button>
 </LinearLayout>

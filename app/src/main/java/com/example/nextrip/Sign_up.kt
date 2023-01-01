@@ -2,12 +2,12 @@ package com.example.nextrip
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nextrip.model.UserData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -87,7 +87,7 @@ class Sign_up : AppCompatActivity() {
                         .addOnCompleteListener{
 
                             if(it.isSuccessful){
-                                val userDetailsIntent = Intent(this@Sign_up, MainActivity::class.java)
+                                val userDetailsIntent = Intent(this@Sign_up, WalkThrough_Slider::class.java)
 
                                 userDetailsIntent.putExtra("firstname_from_signup", firstname)
                                 userDetailsIntent.putExtra("lastname_from_signup", lastname)
