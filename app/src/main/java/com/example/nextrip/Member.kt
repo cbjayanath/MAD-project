@@ -70,8 +70,6 @@ class Member : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("member")
 
-        val tripidwithnoend =
-
         reference.orderByChild("tripid").equalTo(intent.getStringExtra("tripid").toString()).addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 

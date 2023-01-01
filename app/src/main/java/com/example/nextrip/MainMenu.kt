@@ -1,15 +1,32 @@
 package com.example.nextrip
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
+import android.location.LocationRequest
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Looper
+import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+import java.util.jar.Manifest
 
 class MainMenu : AppCompatActivity() {
 
     private lateinit var currenttripcard: CardView
     private lateinit var nearbyhotelscard: CardView
+
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var locationRequest: com.google.android.gms.location.LocationRequest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +34,8 @@ class MainMenu : AppCompatActivity() {
 
         currenttripcard = findViewById(R.id.currentTripCard)
         nearbyhotelscard = findViewById(R.id.nearbyHotelsTripCard)
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         currenttripcard.setOnClickListener{
             forword()
@@ -35,9 +54,13 @@ class MainMenu : AppCompatActivity() {
     }
 
     private fun openNearByHotelsMap(){
-        val gmmIntentUri = Uri.parse("geo:0,0?q=hotels")
-        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-        mapIntent.setPackage("com.google.android.apps.maps")
-        startActivity(mapIntent)
+//        val gmmIntentUri = Uri.parse("geo:37.7749,-122.4194?q=restaurants")
+//        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+//        mapIntent.setPackage("com.google.android.apps.maps")
+//        startActivity(mapIntent)
+
+        val backIntent = Intent(this@MainMenu, MapsActivity_CurrentLocation_Hotels::class.java)
+        //backIntent.putExtra("tripid", intent.getStringExtra("tripid")).toString()
+        startActivity(backIntent)
     }
 }

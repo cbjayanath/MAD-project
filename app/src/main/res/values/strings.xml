@@ -22,4 +22,6 @@
     <string name="locationdescription">locationdescription</string>
     <string name="arrivaldate">arrivaldate</string>
     <string name="arrivaltime">arrivaltime</string>
+    <string name="title_activity_maps_current_location_hotels">MapsActivity_CurrentLocation_Hotels
+    </string>
 </resources>
