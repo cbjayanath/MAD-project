@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.LocationAdapter
@@ -23,6 +24,8 @@ class LocationCompleted : AppCompatActivity() {
     private lateinit var locationList: ArrayList<LocationData>
     private lateinit var locationAdapter: LocationCompleteAdapter
 
+    private lateinit var count: TextView
+
     private lateinit var btnback: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +33,7 @@ class LocationCompleted : AppCompatActivity() {
         setContentView(R.layout.activity_location_completed)
 
         btnback = findViewById(R.id.cl_trip_btn_back)
+        count = findViewById(R.id.countLocationComplete)
 
         locationRecyclerView = findViewById(R.id.cLRecycler)
         locationRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -37,10 +41,23 @@ class LocationCompleted : AppCompatActivity() {
 
         showLocationData()
 
+        showCountofRecycleView()
+
         locationList = arrayListOf<LocationData>()
 
         btnback.setOnClickListener {
             back()
+        }
+    }
+
+    private fun showCountofRecycleView() {
+        if(locationRecyclerView.adapter?.getItemCount().toString().isEmpty()){
+            locationRecyclerView.visibility = View.GONE
+            count.visibility = View.GONE
+        }else{
+            locationRecyclerView.visibility = View.VISIBLE
+            count.visibility = View.VISIBLE
+            count.text = locationRecyclerView.adapter?.getItemCount().toString()
         }
     }
 

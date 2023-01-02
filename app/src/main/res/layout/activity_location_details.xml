@@ -152,7 +152,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/map"
+            android:src="@drawable/hotel"
             app:backgroundTint="#FFA829"
             app:tint="@color/black"
             android:contentDescription="@string/share" />

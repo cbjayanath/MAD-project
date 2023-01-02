@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +30,8 @@ class Backpack : AppCompatActivity() {
 
     private lateinit var backpackNextBtn: MaterialButton
 
+    private lateinit var count: TextView
+
     private var isRented: String ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +40,7 @@ class Backpack : AppCompatActivity() {
 
         addbtn = findViewById(R.id.item_btn_add)
         backpackNextBtn = findViewById(R.id.backpackNextBtn)
+        count = findViewById(R.id.countBackpack)
 
         backpackRecyclerView = findViewById(R.id.bRecycler)
         backpackRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -49,6 +53,8 @@ class Backpack : AppCompatActivity() {
 
         showItemData()
 
+        showCountofRecycleView()
+
         addbtn.setOnClickListener{
             addInfo()
         }
@@ -57,6 +63,17 @@ class Backpack : AppCompatActivity() {
             val backpackIntent = Intent(this,Location::class.java)
             backpackIntent.putExtra("tripid", intent.getStringExtra("tripid").toString())
             startActivity(backpackIntent)
+        }
+    }
+
+    private fun showCountofRecycleView() {
+        if(backpackRecyclerView.adapter?.getItemCount().toString().isEmpty()){
+            backpackRecyclerView.visibility = View.GONE
+            count.visibility = View.GONE
+        }else{
+            backpackRecyclerView.visibility = View.VISIBLE
+            count.visibility = View.VISIBLE
+            count.text = backpackRecyclerView.adapter?.getItemCount().toString()
         }
     }
 

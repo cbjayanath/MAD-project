@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,8 @@ class Member : AppCompatActivity() {
     private lateinit var memberRecyclerView: RecyclerView
     private lateinit var memberList: ArrayList<MemberData>
     private lateinit var membersAdapter: MembersAdapter
+
+    private lateinit var count: TextView
     //private lateinit var loadicon: ImageView
 
     private lateinit var btnmember: Button
@@ -36,6 +39,7 @@ class Member : AppCompatActivity() {
         setContentView(R.layout.activity_member)
 
         btnmember = findViewById(R.id.memberNextBtn)
+        count = findViewById(R.id.countMember)
 
         addsBtn = findViewById(R.id.addingButton)
 
@@ -50,6 +54,8 @@ class Member : AppCompatActivity() {
 
         showMemberData()
 
+        showCountofRecycleView()
+
         addsBtn.setOnClickListener{
             addInfo()
         }
@@ -60,6 +66,17 @@ class Member : AppCompatActivity() {
             startActivity(memberIntent)
         }
 
+    }
+
+    private fun showCountofRecycleView() {
+        if(memberRecyclerView.adapter?.getItemCount().toString().isEmpty()){
+            memberRecyclerView.visibility = View.GONE
+            count.visibility = View.GONE
+        }else{
+            memberRecyclerView.visibility = View.VISIBLE
+            count.visibility = View.VISIBLE
+            count.text = memberRecyclerView.adapter?.getItemCount().toString()
+        }
     }
 
     private fun showMemberData() {

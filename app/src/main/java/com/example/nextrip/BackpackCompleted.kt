@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.BackpackAdapter
@@ -23,6 +24,8 @@ class BackpackCompleted : AppCompatActivity() {
     private lateinit var itemList: ArrayList<ItemData>
     private lateinit var backpackAdapter: BackpackCompleteAdapter
 
+    private lateinit var count: TextView
+
     private lateinit var btnback: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +33,7 @@ class BackpackCompleted : AppCompatActivity() {
         setContentView(R.layout.activity_backpack_completed)
 
         btnback = findViewById(R.id.cb_trip_btn_back)
+        count = findViewById(R.id.countBackpackComplete)
 
         backpackRecyclerView = findViewById(R.id.cBRecycler)
         backpackRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -42,10 +46,23 @@ class BackpackCompleted : AppCompatActivity() {
 
         showItemData()
 
+        showCountofRecycleView()
+
         btnback.setOnClickListener {
             back()
         }
 
+    }
+
+    private fun showCountofRecycleView() {
+        if(backpackRecyclerView.adapter?.getItemCount().toString().isEmpty()){
+            backpackRecyclerView.visibility = View.GONE
+            count.visibility = View.GONE
+        }else{
+            backpackRecyclerView.visibility = View.VISIBLE
+            count.visibility = View.VISIBLE
+            count.text = backpackRecyclerView.adapter?.getItemCount().toString()
+        }
     }
 
     private fun showItemData() {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.BackpackAdapter
@@ -25,6 +26,8 @@ class MyTrips : AppCompatActivity() {
     private lateinit var tripList: ArrayList<TripData>
     private lateinit var tripsAdapter: TripsAdapter
 
+    private lateinit var count: TextView
+
     private lateinit var btnback: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,7 @@ class MyTrips : AppCompatActivity() {
         setContentView(R.layout.activity_my_trips)
 
         btnback = findViewById(R.id.my_trip_btn_back)
+        count = findViewById(R.id.countTripComplete)
 
         tripRecyclerView = findViewById(R.id.tRecycler)
         tripRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -44,8 +48,21 @@ class MyTrips : AppCompatActivity() {
 
         showTripsData()
 
+        showCountofRecycleView()
+
         btnback.setOnClickListener {
             back()
+        }
+    }
+
+    private fun showCountofRecycleView() {
+        if(tripRecyclerView.adapter?.getItemCount().toString().isEmpty()){
+            tripRecyclerView.visibility = View.GONE
+            count.visibility = View.GONE
+        }else{
+            tripRecyclerView.visibility = View.VISIBLE
+            count.visibility = View.VISIBLE
+            count.text = tripRecyclerView.adapter?.getItemCount().toString()
         }
     }
 

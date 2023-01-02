@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.MemberCompleteAdapter
@@ -24,11 +25,14 @@ class MemberCompleted : AppCompatActivity() {
     private lateinit var memberList: ArrayList<MemberData>
     private lateinit var membersAdapter: MemberCompleteAdapter
 
+    private lateinit var count: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_completed)
 
         btnback = findViewById(R.id.cm_trip_btn_back)
+        count = findViewById(R.id.countMemberComplete)
 
         memberRecyclerView = findViewById(R.id.cMRecycler)
         memberRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -44,6 +48,19 @@ class MemberCompleted : AppCompatActivity() {
         }
 
         showMemberData()
+
+        showCountofRecycleView()
+    }
+
+    private fun showCountofRecycleView() {
+        if(memberRecyclerView.adapter?.getItemCount().toString().isEmpty()){
+            memberRecyclerView.visibility = View.GONE
+            count.visibility = View.GONE
+        }else{
+            memberRecyclerView.visibility = View.VISIBLE
+            count.visibility = View.VISIBLE
+            count.text = memberRecyclerView.adapter?.getItemCount().toString()
+        }
     }
 
     private fun showMemberData() {

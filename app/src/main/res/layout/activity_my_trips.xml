@@ -19,13 +19,26 @@
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <TextView
+        android:id="@+id/countTripComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="count"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginRight="50dp"
+        android:textColor="@color/green01"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Completed Trips"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
+        android:text="Completed Trips"
+        android:layout_marginTop="37dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="90dp"
         android:textColor="@color/black"
         android:textSize="23dp"
         android:textStyle="bold"/>

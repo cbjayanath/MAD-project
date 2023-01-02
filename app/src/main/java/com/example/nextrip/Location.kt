@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -43,6 +44,7 @@ class Location : AppCompatActivity() {
 
     private lateinit var backToMainMenu: Button
     private lateinit var btnfinish: Button
+    private lateinit var count: TextView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +55,15 @@ class Location : AppCompatActivity() {
 
         backToMainMenu = findViewById(R.id.backToTheMainMenu)
         btnfinish = findViewById(R.id.finishBtn)
+        count = findViewById(R.id.countLocation)
 
         locationRecyclerView = findViewById(R.id.lRecycler)
         locationRecyclerView.layoutManager = LinearLayoutManager(this)
         locationRecyclerView.setHasFixedSize(true)
 
         showLocationData()
+
+        showCountofRecycleView()
 
         locationList = arrayListOf<LocationData>()
 
@@ -72,6 +77,17 @@ class Location : AppCompatActivity() {
 
         btnfinish.setOnClickListener {
             forward()
+        }
+    }
+
+    private fun showCountofRecycleView() {
+        if(locationRecyclerView.adapter?.getItemCount().toString().isEmpty()){
+            locationRecyclerView.visibility = View.GONE
+            count.visibility = View.GONE
+        }else{
+            locationRecyclerView.visibility = View.VISIBLE
+            count.visibility = View.VISIBLE
+            count.text = locationRecyclerView.adapter?.getItemCount().toString()
         }
     }
 

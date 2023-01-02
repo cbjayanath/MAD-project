@@ -158,6 +158,7 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/emCard"
             android:layout_width="match_parent"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
