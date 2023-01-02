@@ -71,6 +71,7 @@ class LocationDetails : AppCompatActivity() {
         date = findViewById(R.id.location_details_txt_show_date)
         time = findViewById(R.id.location_details_txt_show_time)
         complete = findViewById(R.id.location_details_txt_show_completed)
+        locationQR = findViewById(R.id.location_details_show_img_qrcode)
         hinticon = findViewById(R.id.location_details_show_img_hinticon)
         hint = findViewById(R.id.location_details_txt_show_hint)
         ignore = findViewById(R.id.location_details_txt_show_ignore)
@@ -83,6 +84,8 @@ class LocationDetails : AppCompatActivity() {
         btncomplete = findViewById(R.id.details_location_btn_complete)
 
         showLocationDetails()
+
+        showLocationQR()
 
         checkIsComplete()
 
@@ -99,21 +102,7 @@ class LocationDetails : AppCompatActivity() {
         }
 
         btnshare.setOnClickListener{
-            val shareIntent = Intent(this@LocationDetails, LocationShare::class.java)
-            shareIntent.putExtra("tripid", intent.getStringExtra("tripid")).toString()
-            shareIntent.putExtra("locationid", intent.getStringExtra("locationid")).toString()
-            shareIntent.putExtra("locationname", intent.getStringExtra("locationname")).toString()
-            shareIntent.putExtra("locationcity", intent.getStringExtra("locationcity")).toString()
-            shareIntent.putExtra("locationdistrict", intent.getStringExtra("locationdistrict")).toString()
-            shareIntent.putExtra("locationdescription", intent.getStringExtra("locationdescription")).toString()
-            shareIntent.putExtra("locationaddeddate", intent.getStringExtra("locationaddeddate")).toString()
-            shareIntent.putExtra("locationaddedtime", intent.getStringExtra("locationaddedtime")).toString()
-            shareIntent.putExtra("locationarrivaldate", intent.getStringExtra("locationarrivaldate")).toString()
-            shareIntent.putExtra("locationarrivaltime", intent.getStringExtra("locationarrivaltime")).toString()
-            shareIntent.putExtra("complete", intent.getStringExtra("complete")).toString()
-            shareIntent.putExtra("completeddate", intent.getStringExtra("completeddate")).toString()
-            shareIntent.putExtra("completedtime", intent.getStringExtra("completedtime")).toString()
-            startActivity(shareIntent)
+            shareLocation(intent.getStringExtra("locationname").toString(), intent.getStringExtra("locationcity").toString(), intent.getStringExtra("locationdistrict").toString(), intent.getStringExtra("locationdescription").toString())
         }
 
         btnedit.setOnClickListener{
@@ -247,8 +236,8 @@ class LocationDetails : AppCompatActivity() {
 
             materialTimePicker.addOnPositiveButtonClickListener {
 
-//                val hour = materialTimePicker.hour
-//                val minute = materialTimePicker.minute
+                val hour = materialTimePicker.hour
+                val minute = materialTimePicker.minute
 //                val time = (hour+minute).toLong()
 //                locationArrivalTime.setText(time)
             }
@@ -312,6 +301,39 @@ class LocationDetails : AppCompatActivity() {
         addDialog.show()
     }
 
+    private fun showLocationQR() {
+
+        val qr = intent.getStringExtra("locationname").toString() + " in " + intent.getStringExtra("locationcity").toString()
+
+        if(qr.isEmpty()){
+            locationQR.visibility = View.GONE
+        }else if(qr.isNotEmpty()){
+
+            val writer = QRCodeWriter()
+
+            try {
+                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 100, 100)
+                val width = bitMatrix.width
+                val height = bitMatrix.height
+                val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+
+                for(x in 0 until width){
+                    for(y in 0 until height){
+                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLUE else Color.WHITE)
+                    }
+                }
+
+                locationQR.setImageBitmap(bmp)
+
+            }catch (ex: WriterException){
+                locationQR.visibility = View.INVISIBLE
+                Toast.makeText(this, "QR automatically hide because of $ex", Toast.LENGTH_LONG).show()
+            }
+        }else{
+            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_LONG).show()
+        }
+    }
+
     private fun showInMap(name: String ?= null){
         val gmmIntentUri = Uri.parse("geo:0,0?q=$name&q=hotels")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
@@ -326,7 +348,26 @@ class LocationDetails : AppCompatActivity() {
         startActivity(mapIntent)
     }
 
+    private fun shareLocation(name: String ?= null, city: String ?= null, district: String ?= null, desc: String ?= null) {
 
+        val itemDetail = "$name located near to the $city $district. So, $desc"
+
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_TEXT, itemDetail)
+        intent.type = "text/plain"
+
+        if(itemDetail.isNotEmpty()){
+            startActivity(Intent.createChooser(intent, "Share To : "))
+            if(isFinishing){
+                Toast.makeText(this, "$name shared successfully!", Toast.LENGTH_LONG).show()
+            }
+        }else if (itemDetail.isEmpty()){
+            Toast.makeText(this, "Null content cannot share!", Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this, "Cannot share $name!", Toast.LENGTH_LONG).show()
+        }
+    }
 
     private fun deleteRecord(id: String, name: String) {
         database = FirebaseDatabase.getInstance()
