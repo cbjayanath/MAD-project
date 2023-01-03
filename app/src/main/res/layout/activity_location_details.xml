@@ -107,15 +107,17 @@
             android:textStyle="normal" />
 
         <ImageView
-            android:id="@+id/location_details_show_img_hinticon"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="5dp"
-            android:visibility="gone"
-            app:srcCompat="@drawable/hint" />
+
+            android:visibility="visible"
+          android:background="@color/blue"
+            android:src="@drawable/advertisement"/>
 
         <TextView
             android:id="@+id/location_details_txt_show_hint"
@@ -144,30 +146,30 @@
             android:visibility="gone"
             android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/location_details_txt_show_sharewithonkonwn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="40dp"
-            android:text="share location via QR"
-            android:gravity="center"
-            android:textColor="#887E7E"
-            android:textSize="13sp"
-            android:textStyle="normal" />
+<!--        <TextView-->
+<!--            android:id="@+id/location_details_txt_show_sharewithonkonwn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:text="share location via QR"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="#887E7E"-->
+<!--            android:textSize="13sp"-->
+<!--            android:textStyle="normal" />-->
 
-        <ImageView
-            android:id="@+id/location_details_show_img_qrcode"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            app:srcCompat="@mipmap/ic_launcher" />
+<!--        <ImageView-->
+<!--            android:id="@+id/location_details_show_img_qrcode"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:visibility="visible"-->
+<!--            app:srcCompat="@mipmap/ic_launcher" />-->
 
 
 
@@ -179,7 +181,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/hotel"
+            android:src="@drawable/map"
             app:backgroundTint="#FFA829"
             app:tint="@color/black"
             android:contentDescription="@string/share" />

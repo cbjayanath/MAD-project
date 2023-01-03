@@ -6,16 +6,18 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    app:cardElevation="3dp"
-    app:cardMaxElevation="5dp"
+
     app:cardUseCompatPadding="true"
-    android:layout_margin="20dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp">
 
     <LinearLayout
         android:id="@+id/component_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#401C77FA">
 
 
         <LinearLayout
@@ -33,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 android:text="@string/isrenteditem"
-                android:textColor="#0BDC51"
+                android:textColor="#1C77FA"
                 android:textSize="20sp"
                 android:textStyle="italic" />
 
@@ -52,8 +54,10 @@
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="@string/itemname"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:drawableLeft="@drawable/ic_baseline_shopping_bag_24"
+                    android:drawablePadding="5dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -65,9 +69,9 @@
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="Quantity"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
+                    android:textColor="#575757"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>

@@ -1,17 +1,15 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.example.nextrip.model.UserData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var currenttripcard: CardView
     private lateinit var seemytrip: CardView
 
+    private lateinit var email: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         card01 = findViewById(R.id.c1)
         currenttripcard = findViewById(R.id.currentTripCard)
         seemytrip = findViewById(R.id.c2)
+        email = findViewById(R.id.mailView)
 
         card01.setOnClickListener{
                 startActivity(Intent(this,CreateTrip::class.java))
@@ -50,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         val userid = firebaseAuth.currentUser?.uid.toString()
+
+        email.visibility = View.VISIBLE
+        email.text = firebaseAuth.currentUser?.email.toString()
 
         reference.child(userid).get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")

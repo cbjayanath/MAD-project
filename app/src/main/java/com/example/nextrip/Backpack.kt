@@ -1,13 +1,13 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.BackpackAdapter
@@ -42,6 +42,8 @@ class Backpack : AppCompatActivity() {
         backpackNextBtn = findViewById(R.id.backpackNextBtn)
         count = findViewById(R.id.countBackpack)
 
+        count.visibility = View.GONE
+
         backpackRecyclerView = findViewById(R.id.bRecycler)
         backpackRecyclerView.layoutManager = LinearLayoutManager(this)
         backpackRecyclerView.setHasFixedSize(true)
@@ -53,8 +55,6 @@ class Backpack : AppCompatActivity() {
 
         showItemData()
 
-        showCountofRecycleView()
-
         addbtn.setOnClickListener{
             addInfo()
         }
@@ -63,17 +63,6 @@ class Backpack : AppCompatActivity() {
             val backpackIntent = Intent(this,Location::class.java)
             backpackIntent.putExtra("tripid", intent.getStringExtra("tripid").toString())
             startActivity(backpackIntent)
-        }
-    }
-
-    private fun showCountofRecycleView() {
-        if(backpackRecyclerView.adapter?.getItemCount().toString().isEmpty()){
-            backpackRecyclerView.visibility = View.GONE
-            count.visibility = View.GONE
-        }else{
-            backpackRecyclerView.visibility = View.VISIBLE
-            count.visibility = View.VISIBLE
-            count.text = backpackRecyclerView.adapter?.getItemCount().toString()
         }
     }
 
@@ -88,6 +77,8 @@ class Backpack : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 itemList.clear()
                 if(snapshot.exists()){
+                    count.visibility = View.VISIBLE
+                    count.text = snapshot.childrenCount.toString()
                     for(li in snapshot.children){
                         val itemData = li.getValue(ItemData::class.java)
                         if (itemData != null) {
@@ -115,6 +106,8 @@ class Backpack : AppCompatActivity() {
                         }
 
                     })
+                }else{
+                    count.visibility = View.GONE
                 }
             }
 

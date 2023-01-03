@@ -111,6 +111,7 @@ class Sign_up : AppCompatActivity() {
     private fun isValidEmail(email: String): Boolean {
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
+
     }
 
     private fun isOnlyLetters(word: String): Boolean {

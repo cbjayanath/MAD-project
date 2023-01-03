@@ -7,8 +7,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    app:cardElevation="3dp"
-    app:cardMaxElevation="5dp"
+
     app:cardUseCompatPadding="true"
     android:layout_marginTop="5dp"
     android:layout_marginStart="20dp"
@@ -18,7 +17,7 @@
         android:id="@+id/component_member"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FDF28D"
+        android:background="#4008F303"
         android:orientation="horizontal">
 
 
@@ -38,6 +37,8 @@
                 android:layout_margin="6dp"
                 android:text="Name"
                 android:textColor="@color/black"
+                android:drawableLeft="@drawable/ic_person"
+                android:drawablePadding="5dp"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -57,7 +58,9 @@
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="Phonenumber"
-                    android:textColor="@android:color/darker_gray"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="5dp"
+                    android:textColor="#575757"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -66,10 +69,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="EmPhonenumber"
+                    android:drawableLeft="@drawable/ic_em_phone"
+                    android:drawablePadding="5dp"
                     android:textColor="@android:color/holo_red_light"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -79,11 +84,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="65dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="Address"
-                    android:textColor="@color/teal_700"
+                    android:drawableLeft="@drawable/ic_address"
+                    android:drawablePadding="5dp"
+                    android:textColor="#1C77FA"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 

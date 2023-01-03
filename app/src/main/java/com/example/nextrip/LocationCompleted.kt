@@ -1,19 +1,16 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nextrip.Adapters.LocationAdapter
 import com.example.nextrip.Adapters.LocationCompleteAdapter
 import com.example.nextrip.model.LocationData
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
-import java.util.ArrayList
 
 class LocationCompleted : AppCompatActivity() {
 
@@ -35,29 +32,18 @@ class LocationCompleted : AppCompatActivity() {
         btnback = findViewById(R.id.cl_trip_btn_back)
         count = findViewById(R.id.countLocationComplete)
 
+        count.visibility = View.GONE
+
         locationRecyclerView = findViewById(R.id.cLRecycler)
         locationRecyclerView.layoutManager = LinearLayoutManager(this)
         locationRecyclerView.setHasFixedSize(true)
 
         showLocationData()
 
-        showCountofRecycleView()
-
         locationList = arrayListOf<LocationData>()
 
         btnback.setOnClickListener {
             back()
-        }
-    }
-
-    private fun showCountofRecycleView() {
-        if(locationRecyclerView.adapter?.getItemCount().toString().isEmpty()){
-            locationRecyclerView.visibility = View.GONE
-            count.visibility = View.GONE
-        }else{
-            locationRecyclerView.visibility = View.VISIBLE
-            count.visibility = View.VISIBLE
-            count.text = locationRecyclerView.adapter?.getItemCount().toString()
         }
     }
 
@@ -73,6 +59,8 @@ class LocationCompleted : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 locationList.clear()
                 if(snapshot.exists()){
+                    count.visibility = View.VISIBLE
+                    count.text = snapshot.childrenCount.toString()
                     for(li in snapshot.children){
                         val locationData = li.getValue(LocationData::class.java)
                         if (locationData != null) {
@@ -83,6 +71,8 @@ class LocationCompleted : AppCompatActivity() {
                     locationAdapter = LocationCompleteAdapter(locationList)
                     locationRecyclerView.adapter = locationAdapter
                     locationRecyclerView.visibility = View.VISIBLE
+                }else{
+                    count.visibility = View.GONE
                 }
             }
 

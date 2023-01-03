@@ -7,8 +7,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    app:cardElevation="3dp"
-    app:cardMaxElevation="5dp"
+
     app:cardUseCompatPadding="true"
     android:layout_marginTop="5dp"
     android:layout_marginStart="20dp"
@@ -18,7 +17,7 @@
         android:id="@+id/component_member"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FDF28D"
+        android:background="#401C77FA"
         android:orientation="horizontal">
 
 
@@ -37,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 android:text="isCompleted"
-                android:textColor="@android:color/holo_orange_dark"
+                android:textColor="#1C77FA"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -52,12 +51,11 @@
                     android:id="@+id/list_location_txt_show_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="Name"
-                    android:textColor="@android:color/black"
+                    android:layout_margin="6dp"
+                    android:drawableLeft="@drawable/ic_mylocation"
+                    android:drawablePadding="5dp"
+                    android:text="@string/locationname"
+                    android:textColor="#000000"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
@@ -69,9 +67,11 @@
                     android:layout_marginTop="46dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
-                    android:text="city"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="18sp"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="5dp"
+                    android:text="@string/city"
+                    android:textColor="#575757"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -79,52 +79,60 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginTop="80dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
-                    android:text="district"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:text="@string/district"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="5dp"
+                    android:textColor="#575757"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/list_location_txt_show_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="120dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
-                    android:text="Description"
-                    android:textColor="@color/teal_700"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="@string/locationdescription"
+                    android:drawableLeft="@drawable/ic_description"
+                    android:drawablePadding="5dp"
+                    android:textColor="#575757"
+                    android:textSize="18sp"
+                    android:textStyle="normal"  />
 
                 <TextView
                     android:id="@+id/list_location_txt_show_startdatetime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="160dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
-                    android:text="StartDateTime"
-                    android:textColor="@color/teal_700"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
+                    android:text="@string/arrivaldate"
+                    android:drawableLeft="@drawable/ic_date"
+                    android:drawablePadding="5dp"
+                    android:textColor="#575757"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/list_location_txt_show_completedatetime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="165dp"
+                    android:layout_marginTop="185dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
-                    android:text="CompleteDateTime"
-                    android:textColor="@color/teal_700"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
+                    android:text="@string/arrivaldate"
+                    android:drawableLeft="@drawable/ic_date"
+                    android:drawablePadding="5dp"
+                    android:textColor="#575757"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>

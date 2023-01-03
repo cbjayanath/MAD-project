@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nextrip.model.MemberData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
@@ -202,6 +202,7 @@ class MemberDetails : AppCompatActivity() {
                 reference.child(intent.getStringExtra("memberphonenumber").toString()).setValue(member).addOnCompleteListener{
                     if(it.isSuccessful){
                         Toast.makeText(this,"$name Updated Successfully!",Toast.LENGTH_LONG).show()
+                        back()
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this,"Cannot add $name",Toast.LENGTH_LONG).show()

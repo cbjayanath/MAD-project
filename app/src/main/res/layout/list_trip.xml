@@ -17,7 +17,7 @@
         android:id="@+id/component_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FDF28D"
+        android:background="#4008F303"
         android:orientation="horizontal">
 
 
@@ -37,6 +37,8 @@
                 android:layout_margin="6dp"
                 android:text="tripname"
                 android:textColor="#000000"
+                android:drawableLeft="@drawable/ic_blck_location"
+                android:drawablePadding="5dp"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -54,10 +56,12 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
+                    android:drawableLeft="@drawable/ic_trip_description"
+                    android:drawablePadding="5dp"
                     android:text="tripdescription"
-                    android:textColor="#047785"
+                    android:textColor="#575757"
                     android:textSize="18sp"
-                    android:textStyle="normal" />
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 

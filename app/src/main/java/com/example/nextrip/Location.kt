@@ -1,23 +1,19 @@
 package com.example.nextrip
 
 import android.content.Intent
-import android.icu.text.TimeZoneFormat.TimeType
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nextrip.Adapters.BackpackAdapter
 import com.example.nextrip.Adapters.LocationAdapter
-import com.example.nextrip.model.ItemData
 import com.example.nextrip.model.LocationData
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,11 +21,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.database.*
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
 import java.util.*
 
 class Location : AppCompatActivity() {
@@ -57,13 +51,13 @@ class Location : AppCompatActivity() {
         btnfinish = findViewById(R.id.finishBtn)
         count = findViewById(R.id.countLocation)
 
+        count.visibility = View.GONE
+
         locationRecyclerView = findViewById(R.id.lRecycler)
         locationRecyclerView.layoutManager = LinearLayoutManager(this)
         locationRecyclerView.setHasFixedSize(true)
 
         showLocationData()
-
-        showCountofRecycleView()
 
         locationList = arrayListOf<LocationData>()
 
@@ -80,17 +74,6 @@ class Location : AppCompatActivity() {
         }
     }
 
-    private fun showCountofRecycleView() {
-        if(locationRecyclerView.adapter?.getItemCount().toString().isEmpty()){
-            locationRecyclerView.visibility = View.GONE
-            count.visibility = View.GONE
-        }else{
-            locationRecyclerView.visibility = View.VISIBLE
-            count.visibility = View.VISIBLE
-            count.text = locationRecyclerView.adapter?.getItemCount().toString()
-        }
-    }
-
     private fun showLocationData() {
         locationRecyclerView.visibility = View.GONE
         //loadicon.visibility = View.VISIBLE
@@ -103,6 +86,8 @@ class Location : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 locationList.clear()
                 if(snapshot.exists()){
+                    count.visibility = View.VISIBLE
+                    count.text = snapshot.childrenCount.toString()
                     for(li in snapshot.children){
                         val locationData = li.getValue(LocationData::class.java)
                         if (locationData != null) {
@@ -137,6 +122,8 @@ class Location : AppCompatActivity() {
                         }
 
                     })
+                }else{
+                    count.visibility = View.GONE
                 }
             }
 

@@ -22,38 +22,38 @@
             android:layout_marginBottom="10dp"
             app:srcCompat="?attr/actionModeCloseDrawable" />
 
-        <ImageView
-            android:id="@+id/item_details_img_rented"
-            android:layout_width="342dp"
-            android:layout_height="270dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone"
-            app:srcCompat="@drawable/rent" />
+<!--        <ImageView-->
+<!--            android:id="@+id/item_details_img_rented"-->
+<!--            android:layout_width="342dp"-->
+<!--            android:layout_height="270dp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:visibility="gone"-->
+<!--            app:srcCompat="@drawable/rent" />-->
 
-        <ImageView
-            android:id="@+id/item_details_img_friend_member"
-            android:layout_width="342dp"
-            android:layout_height="270dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone"
-            app:srcCompat="@drawable/friendsitem" />
+<!--        <ImageView-->
+<!--            android:id="@+id/item_details_img_friend_member"-->
+<!--            android:layout_width="342dp"-->
+<!--            android:layout_height="270dp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:visibility="gone"-->
+<!--            app:srcCompat="@drawable/friendsitem" />-->
 
-        <ImageView
-            android:id="@+id/item_details_img_my"
-            android:layout_width="342dp"
-            android:layout_height="270dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone"
-            app:srcCompat="@drawable/myitem2" />
+<!--        <ImageView-->
+<!--            android:id="@+id/item_details_img_my"-->
+<!--            android:layout_width="342dp"-->
+<!--            android:layout_height="270dp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:visibility="gone"-->
+<!--            app:srcCompat="@drawable/myitem2" />-->
 
         <TextView
             android:id="@+id/item_details_txt_show_about"
@@ -64,7 +64,7 @@
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="10dp"
             android:text="aboutitem"
-            android:textColor="#0BDC51"
+            android:textColor="#1C77FA"
             android:textSize="20sp"
             android:textStyle="italic" />
 
@@ -77,23 +77,45 @@
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="10dp"
             android:text="Name"
-            android:textColor="#6378F1"
+            android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="normal" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backpackCard"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="20dp"
+
+        app:cardUseCompatPadding="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        tools:ignore="UselessParent"
+        android:background="#401C77FA">
 
         <TextView
             android:id="@+id/item_details_txt_show_quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="5dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:text="Quantity"
             android:textColor="#8B92B8"
+            android:drawableLeft="@drawable/ic_quantity"
+            android:drawablePadding="5dp"
             android:textSize="20sp"
-            android:textStyle="normal" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/item_details_txt_desc"
@@ -105,9 +127,13 @@
             android:layout_marginBottom="5dp"
             android:text="desc"
             android:textColor="#8B92B8"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/ic_description"
+            android:drawablePadding="5dp"
             android:textStyle="normal" />
+    </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/details_item_btn_share"
             android:layout_width="wrap_content"

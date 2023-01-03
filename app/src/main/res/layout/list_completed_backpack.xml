@@ -7,8 +7,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    app:cardElevation="3dp"
-    app:cardMaxElevation="5dp"
+
     app:cardUseCompatPadding="true"
     android:layout_marginTop="5dp"
     android:layout_marginStart="20dp"
@@ -18,7 +17,7 @@
         android:id="@+id/component_member"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FDF28D"
+        android:background="#4008F303"
         android:orientation="horizontal">
 
 
@@ -35,11 +34,12 @@
                 android:id="@+id/list_item_txt_show_isrented"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="isRented"
-                android:textColor="@android:color/holo_orange_dark"
+                android:layout_margin="4dp"
+                android:text="@string/isrenteditem"
+                android:textColor="#044CB5"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="italic"
+                 />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -53,9 +53,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
+                    android:drawableLeft="@drawable/ic_baseline_shopping_bag_24"
+                    android:drawablePadding="5dp"
                     android:text="itemName"
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
@@ -69,9 +71,11 @@
                     android:layout_marginTop="39dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
-                    android:text="EmPhonenumber"
-                    android:textColor="@android:color/holo_red_light"
-                    android:textSize="15sp"
+                    android:drawableLeft="@drawable/ic_quantity"
+                    android:drawablePadding="5dp"
+                    android:text="Quantity"
+                    android:textColor="#575757"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -82,8 +86,10 @@
                     android:layout_marginTop="66dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
+                    android:drawableLeft="@drawable/ic_description"
+                    android:drawablePadding="5dp"
                     android:text="Description"
-                    android:textColor="@color/teal_700"
+                    android:textColor="#575757"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 

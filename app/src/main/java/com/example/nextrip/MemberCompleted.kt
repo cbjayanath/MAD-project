@@ -1,17 +1,15 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.MemberCompleteAdapter
-import com.example.nextrip.Adapters.MembersAdapter
 import com.example.nextrip.model.MemberData
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 
 class MemberCompleted : AppCompatActivity() {
@@ -34,6 +32,8 @@ class MemberCompleted : AppCompatActivity() {
         btnback = findViewById(R.id.cm_trip_btn_back)
         count = findViewById(R.id.countMemberComplete)
 
+        count.visibility = View.GONE
+
         memberRecyclerView = findViewById(R.id.cMRecycler)
         memberRecyclerView.layoutManager = LinearLayoutManager(this)
         memberRecyclerView.setHasFixedSize(true)
@@ -48,19 +48,6 @@ class MemberCompleted : AppCompatActivity() {
         }
 
         showMemberData()
-
-        showCountofRecycleView()
-    }
-
-    private fun showCountofRecycleView() {
-        if(memberRecyclerView.adapter?.getItemCount().toString().isEmpty()){
-            memberRecyclerView.visibility = View.GONE
-            count.visibility = View.GONE
-        }else{
-            memberRecyclerView.visibility = View.VISIBLE
-            count.visibility = View.VISIBLE
-            count.text = memberRecyclerView.adapter?.getItemCount().toString()
-        }
     }
 
     private fun showMemberData() {
@@ -78,6 +65,8 @@ class MemberCompleted : AppCompatActivity() {
                 memberList.clear()
 
                 if (snapshot.exists()) {
+                    count.visibility = View.VISIBLE
+                    count.text = snapshot.childrenCount.toString()
                     for (ms in snapshot.children) {
                         val memberData = ms.getValue(MemberData::class.java)
                         if (memberData != null) {
@@ -90,6 +79,8 @@ class MemberCompleted : AppCompatActivity() {
                     memberRecyclerView.adapter = membersAdapter
                     memberRecyclerView.visibility = View.VISIBLE
                     //loadicon.visibility = View.GONE
+                }else{
+                    count.visibility = View.GONE
                 }
             }
 

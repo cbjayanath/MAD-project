@@ -1,8 +1,6 @@
 package com.example.nextrip
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -23,9 +21,6 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.WriterException
-import com.google.zxing.qrcode.QRCodeWriter
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -45,7 +40,7 @@ class LocationDetails : AppCompatActivity() {
     private lateinit var date: TextView
     private lateinit var time: TextView
     private lateinit var complete: TextView
-    private lateinit var locationQR: ImageView
+    //private lateinit var locationQR: ImageView
     private lateinit var hinticon: ImageView
     private lateinit var hint: TextView
     private lateinit var ignore: TextView
@@ -71,8 +66,7 @@ class LocationDetails : AppCompatActivity() {
         date = findViewById(R.id.location_details_txt_show_date)
         time = findViewById(R.id.location_details_txt_show_time)
         complete = findViewById(R.id.location_details_txt_show_completed)
-        locationQR = findViewById(R.id.location_details_show_img_qrcode)
-        hinticon = findViewById(R.id.location_details_show_img_hinticon)
+        //hinticon = findViewById(R.id.location_details_show_img_hinticon)
         hint = findViewById(R.id.location_details_txt_show_hint)
         ignore = findViewById(R.id.location_details_txt_show_ignore)
 
@@ -85,7 +79,7 @@ class LocationDetails : AppCompatActivity() {
 
         showLocationDetails()
 
-        showLocationQR()
+        //showLocationQR()
 
         checkIsComplete()
 
@@ -126,81 +120,81 @@ class LocationDetails : AppCompatActivity() {
         date.text = intent.getStringExtra("locationaddeddate").toString() + " to " + intent.getStringExtra("locationarrivaldate").toString()
         time.text = intent.getStringExtra("locationaddedtime").toString() + " to " + intent.getStringExtra("locationarrivaltime").toString()
 
-        val words = intent.getStringExtra("locationdescription").toString().lowercase(Locale.getDefault()).split("\\s+".toRegex())
-
-        val ishistory: Boolean = "history" in words
-        val ishistorical: Boolean = "historical" in words
-        val isking: Boolean = "king" in words
-
-        val isnature: Boolean = "nature" in words
-        val isnatural: Boolean = "natural" in words
-        val ismountain: Boolean = "mountain" in words
-        val iswaterfall: Boolean = "waterfall" in words
-        val isforest: Boolean = "forest" in words
-
-        if(ishistory || ishistorical || isking){
-
-            hinticon.visibility = View.VISIBLE
-            hint.visibility = View.VISIBLE
-            ignore.visibility = View.VISIBLE
-
-            hint.text = "Seems like you will see one of the historical places. Find out more about the history of this place before having fun. It will help you to update your knowledge about history."
-
-            ignore.setOnClickListener {
-                hideHint()
-            }
-
-        }else if(isnatural || isnature){
-
-            hinticon.visibility = View.VISIBLE
-            hint.visibility = View.VISIBLE
-            ignore.visibility = View.VISIBLE
-
-            hint.text = "Seems like you will see the beauty of nature. Have fun and save nature for other travelers. Have a nice trip!"
-
-            ignore.setOnClickListener {
-                hideHint()
-            }
-
-        }else if(ismountain){
-
-            hinticon.visibility = View.VISIBLE
-            hint.visibility = View.VISIBLE
-            ignore.visibility = View.VISIBLE
-
-            hint.text = "Seems like you will see a mountain. If you have permission and more time, we suggest climbing the mountain. It will be more funny and memorable."
-
-            ignore.setOnClickListener {
-                hideHint()
-            }
-
-        }else if(iswaterfall){
-
-            hinticon.visibility = View.VISIBLE
-            hint.visibility = View.VISIBLE
-            ignore.visibility = View.VISIBLE
-
-            hint.text = "Seems like you will see a beautiful waterfall. If you have permission and more time we suggest swimming, bathing, and other fun activities. Before having fun make sure that the waterfall is safe."
-
-            ignore.setOnClickListener {
-                hideHint()
-            }
-
-        }else if(isforest){
-
-            hinticon.visibility = View.VISIBLE
-            hint.visibility = View.VISIBLE
-            ignore.visibility = View.VISIBLE
-
-            hint.text = "Seems like you will see a beautiful forest. Take a lot of time and see the beauty of nature with your eyes. It will be nicer than taking photos from electronic devices quickly."
-
-            ignore.setOnClickListener {
-                hideHint()
-            }
-
-        }else{
-            hideHint()
-        }
+//        val words = intent.getStringExtra("locationdescription").toString().lowercase(Locale.getDefault()).split("\\s+".toRegex())
+//
+//        val ishistory: Boolean = "history" in words
+//        val ishistorical: Boolean = "historical" in words
+//        val isking: Boolean = "king" in words
+//
+//        val isnature: Boolean = "nature" in words
+//        val isnatural: Boolean = "natural" in words
+//        val ismountain: Boolean = "mountain" in words
+//        val iswaterfall: Boolean = "waterfall" in words
+//        val isforest: Boolean = "forest" in words
+//
+//        if(ishistory || ishistorical || isking){
+//
+//            hinticon.visibility = View.VISIBLE
+//            hint.visibility = View.VISIBLE
+//            ignore.visibility = View.VISIBLE
+//
+//            hint.text = "Seems like you will see one of the historical places. Find out more about the history of this place before having fun. It will help you to update your knowledge about history."
+//
+//            ignore.setOnClickListener {
+//                hideHint()
+//            }
+//
+//        }else if(isnatural || isnature){
+//
+//            hinticon.visibility = View.VISIBLE
+//            hint.visibility = View.VISIBLE
+//            ignore.visibility = View.VISIBLE
+//
+//            hint.text = "Seems like you will see the beauty of nature. Have fun and save nature for other travelers. Have a nice trip!"
+//
+//            ignore.setOnClickListener {
+//                hideHint()
+//            }
+//
+//        }else if(ismountain){
+//
+//            hinticon.visibility = View.VISIBLE
+//            hint.visibility = View.VISIBLE
+//            ignore.visibility = View.VISIBLE
+//
+//            hint.text = "Seems like you will see a mountain. If you have permission and more time, we suggest climbing the mountain. It will be more funny and memorable."
+//
+//            ignore.setOnClickListener {
+//                hideHint()
+//            }
+//
+//        }else if(iswaterfall){
+//
+//            hinticon.visibility = View.VISIBLE
+//            hint.visibility = View.VISIBLE
+//            ignore.visibility = View.VISIBLE
+//
+//            hint.text = "Seems like you will see a beautiful waterfall. If you have permission and more time we suggest swimming, bathing, and other fun activities. Before having fun make sure that the waterfall is safe."
+//
+//            ignore.setOnClickListener {
+//                hideHint()
+//            }
+//
+//        }else if(isforest){
+//
+//            hinticon.visibility = View.VISIBLE
+//            hint.visibility = View.VISIBLE
+//            ignore.visibility = View.VISIBLE
+//
+//            hint.text = "Seems like you will see a beautiful forest. Take a lot of time and see the beauty of nature with your eyes. It will be nicer than taking photos from electronic devices quickly."
+//
+//            ignore.setOnClickListener {
+//                hideHint()
+//            }
+//
+//        }else{
+//            hideHint()
+//        }
 
     }
 
@@ -215,6 +209,13 @@ class LocationDetails : AppCompatActivity() {
         val locationDescription = v.findViewById<TextInputEditText>(R.id.lDesc)
         val locationArrivalDate = v.findViewById<TextInputEditText>(R.id.arrivalDate)
         val locationArrivalTime = v.findViewById<TextInputEditText>(R.id.arrivalTime)
+
+        locationName.setText(intent.getStringExtra("locationname").toString())
+        locationCity.setText(intent.getStringExtra("locationcity").toString())
+        locationDistrict.setText(intent.getStringExtra("locationdistrict").toString())
+        locationDescription.setText(intent.getStringExtra("locationdescription").toString())
+        locationArrivalDate.setText(intent.getStringExtra("locationarrivaldate").toString())
+        locationArrivalTime.setText(intent.getStringExtra("locationarrivaltime").toString())
 
 
         locationArrivalDate.setOnClickListener(){
@@ -284,6 +285,7 @@ class LocationDetails : AppCompatActivity() {
                 reference.child(locationid).setValue(location).addOnCompleteListener{
                     if(it.isSuccessful){
                         Toast.makeText(this,"$name Updated Successfully!", Toast.LENGTH_LONG).show()
+                        back()
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this,"Cannot add $name", Toast.LENGTH_LONG).show()
@@ -301,41 +303,41 @@ class LocationDetails : AppCompatActivity() {
         addDialog.show()
     }
 
-    private fun showLocationQR() {
-
-        val qr = intent.getStringExtra("locationname").toString() + " in " + intent.getStringExtra("locationcity").toString()
-
-        if(qr.isEmpty()){
-            locationQR.visibility = View.GONE
-        }else if(qr.isNotEmpty()){
-
-            val writer = QRCodeWriter()
-
-            try {
-                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 100, 100)
-                val width = bitMatrix.width
-                val height = bitMatrix.height
-                val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-
-                for(x in 0 until width){
-                    for(y in 0 until height){
-                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLUE else Color.WHITE)
-                    }
-                }
-
-                locationQR.setImageBitmap(bmp)
-
-            }catch (ex: WriterException){
-                locationQR.visibility = View.INVISIBLE
-                Toast.makeText(this, "QR automatically hide because of $ex", Toast.LENGTH_LONG).show()
-            }
-        }else{
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_LONG).show()
-        }
-    }
+//    private fun showLocationQR() {
+//
+//        val qr = intent.getStringExtra("locationname").toString() + " in " + intent.getStringExtra("locationcity").toString()
+//
+//        if(qr.isEmpty()){
+//            locationQR.visibility = View.GONE
+//        }else if(qr.isNotEmpty()){
+//
+//            val writer = QRCodeWriter()
+//
+//            try {
+//                val bitMatrix = writer.encode(qr, BarcodeFormat.QR_CODE, 100, 100)
+//                val width = bitMatrix.width
+//                val height = bitMatrix.height
+//                val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+//
+//                for(x in 0 until width){
+//                    for(y in 0 until height){
+//                        bmp.setPixel(x,y, if(bitMatrix[x,y]) Color.BLUE else Color.WHITE)
+//                    }
+//                }
+//
+//                locationQR.setImageBitmap(bmp)
+//
+//            }catch (ex: WriterException){
+//                locationQR.visibility = View.INVISIBLE
+//                Toast.makeText(this, "QR automatically hide because of $ex", Toast.LENGTH_LONG).show()
+//            }
+//        }else{
+//            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_LONG).show()
+//        }
+//    }
 
     private fun showInMap(name: String ?= null){
-        val gmmIntentUri = Uri.parse("geo:0,0?q=$name&q=hotels")
+        val gmmIntentUri = Uri.parse("geo:0,0?q=$name")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(mapIntent)
@@ -350,7 +352,7 @@ class LocationDetails : AppCompatActivity() {
 
     private fun shareLocation(name: String ?= null, city: String ?= null, district: String ?= null, desc: String ?= null) {
 
-        val itemDetail = "$name located near to the $city $district. So, $desc"
+        val itemDetail = "$name is located in $city city in $district district. Description, $desc"
 
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
@@ -432,12 +434,6 @@ class LocationDetails : AppCompatActivity() {
             btndelete.visibility = View.VISIBLE
             complete.visibility = View.GONE
         }
-    }
-
-    private fun hideHint(){
-        hinticon.visibility = View.GONE
-        hint.visibility = View.GONE
-        ignore.visibility = View.GONE
     }
 
     private fun isOnlyNumbers(q: String): Boolean {

@@ -1,20 +1,17 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nextrip.Adapters.BackpackAdapter
 import com.example.nextrip.Adapters.TripsAdapter
-import com.example.nextrip.model.ItemData
 import com.example.nextrip.model.TripData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.util.ArrayList
 
 class MyTrips : AppCompatActivity() {
 
@@ -37,6 +34,8 @@ class MyTrips : AppCompatActivity() {
         btnback = findViewById(R.id.my_trip_btn_back)
         count = findViewById(R.id.countTripComplete)
 
+        count.visibility = View.GONE
+
         tripRecyclerView = findViewById(R.id.tRecycler)
         tripRecyclerView.layoutManager = LinearLayoutManager(this)
         tripRecyclerView.setHasFixedSize(true)
@@ -48,21 +47,8 @@ class MyTrips : AppCompatActivity() {
 
         showTripsData()
 
-        showCountofRecycleView()
-
         btnback.setOnClickListener {
             back()
-        }
-    }
-
-    private fun showCountofRecycleView() {
-        if(tripRecyclerView.adapter?.getItemCount().toString().isEmpty()){
-            tripRecyclerView.visibility = View.GONE
-            count.visibility = View.GONE
-        }else{
-            tripRecyclerView.visibility = View.VISIBLE
-            count.visibility = View.VISIBLE
-            count.text = tripRecyclerView.adapter?.getItemCount().toString()
         }
     }
 
@@ -81,6 +67,8 @@ class MyTrips : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 tripList.clear()
                 if(snapshot.exists()){
+                    count.visibility = View.VISIBLE
+                    count.text = snapshot.childrenCount.toString()
                     for(t in snapshot.children){
                         val tripData = t.getValue(TripData::class.java)
                         if (tripData != null) {
@@ -109,6 +97,8 @@ class MyTrips : AppCompatActivity() {
                         }
 
                     })
+                }else{
+                    count.visibility = View.GONE
                 }
             }
 

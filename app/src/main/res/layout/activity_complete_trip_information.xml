@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/trip_txt_show_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:layout_marginStart="50dp"
@@ -26,6 +26,7 @@
         android:layout_marginEnd="50dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="60dp"
+        android:gravity="center"
         android:textSize="38dp"
         android:textColor="@color/black"
         android:text="tripname" />
@@ -40,22 +41,28 @@
         android:layout_marginEnd="50dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="60dp"
-        android:textSize="18dp"
-        android:textColor="@color/teal_700"
+        android:textSize="20dp"
+        android:textColor="#808383"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_description"
+        android:drawablePadding="5dp"
         android:text="tripdescription" />
 
     <TextView
         android:id="@+id/trip_txt_show_datetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="235dp"
+        android:layout_marginTop="240dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="25dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="60dp"
-        android:textSize="14dp"
-        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textColor="#808383"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_time"
+        android:drawablePadding="5dp"
         android:text="tripdatetime" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -67,7 +74,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/members"
-        app:backgroundTint="#FFA829"
+        app:backgroundTint="#4008F303"
         app:tint="@color/black"
         android:contentDescription="Members" />
 
@@ -81,7 +88,7 @@
         android:layout_marginBottom="20dp"
         android:contentDescription="Backpack"
         android:src="@drawable/backpack"
-        app:backgroundTint="#FFA829"
+        app:backgroundTint="#4008F303"
         app:tint="@color/black" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -93,7 +100,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/location"
-        app:backgroundTint="#FFA829"
+
+        app:backgroundTint="#4008F303"
         app:tint="@color/black"
         android:contentDescription="Locations" />
 
@@ -110,6 +118,7 @@
         android:layout_marginBottom="60dp"
         android:background="@drawable/rounded_textview"
         android:textColor="@color/red01"
+        android:visibility="visible"
         android:text="Delete Trip">
 
     </Button>

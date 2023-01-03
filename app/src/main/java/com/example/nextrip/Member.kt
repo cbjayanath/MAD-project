@@ -1,16 +1,15 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextrip.Adapters.MembersAdapter
@@ -41,6 +40,8 @@ class Member : AppCompatActivity() {
         btnmember = findViewById(R.id.memberNextBtn)
         count = findViewById(R.id.countMember)
 
+        count.visibility = View.GONE
+
         addsBtn = findViewById(R.id.addingButton)
 
         memberRecyclerView = findViewById(R.id.mRecycler)
@@ -54,8 +55,6 @@ class Member : AppCompatActivity() {
 
         showMemberData()
 
-        showCountofRecycleView()
-
         addsBtn.setOnClickListener{
             addInfo()
         }
@@ -66,17 +65,6 @@ class Member : AppCompatActivity() {
             startActivity(memberIntent)
         }
 
-    }
-
-    private fun showCountofRecycleView() {
-        if(memberRecyclerView.adapter?.getItemCount().toString().isEmpty()){
-            memberRecyclerView.visibility = View.GONE
-            count.visibility = View.GONE
-        }else{
-            memberRecyclerView.visibility = View.VISIBLE
-            count.visibility = View.VISIBLE
-            count.text = memberRecyclerView.adapter?.getItemCount().toString()
-        }
     }
 
     private fun showMemberData() {
@@ -93,6 +81,8 @@ class Member : AppCompatActivity() {
                 memberList.clear()
 
                 if (snapshot.exists()) {
+                    count.visibility = View.VISIBLE
+                    count.text = snapshot.childrenCount.toString()
                     for (ms in snapshot.children) {
                         val memberData = ms.getValue(MemberData::class.java)
                         if (memberData != null) {
@@ -121,6 +111,8 @@ class Member : AppCompatActivity() {
                         }
 
                     })
+                }else{
+                    count.visibility = View.GONE
                 }
             }
 

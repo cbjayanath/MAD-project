@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MemberDetails">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,47 +33,74 @@
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="10dp"
             android:text="Name"
-            android:textColor="#6378F1"
+
+
+            android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="normal" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/backpackCard"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:cardCornerRadius="20dp"
 
+            app:cardUseCompatPadding="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="UselessParent"
+                android:background="#401C77FA">
         <TextView
             android:id="@+id/member_details_txt_show_phonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="5dp"
             android:text="Phonenumber"
-            android:textColor="#8B92B8"
+            android:drawablePadding="10dp"
+            android:textColor="#808383"
             android:textSize="20sp"
-            android:textStyle="normal" />
+            android:drawableLeft="@drawable/ic_baseline_contact_phone_24"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/member_details_txt_show_address"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="200dp"
+
             android:layout_marginBottom="20dp"
             android:text="Address"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawablePadding="10dp"
             android:textColor="#8B92B8"
-            android:textSize="18sp"
-            android:textStyle="normal" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/member_details_txt_show_em_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="40dp"
             android:text="EMContact"
-            android:textColor="#E1635A"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_em_phone"
+            android:textColor="#FB004E"
             android:textSize="20sp"
-            android:textStyle="normal" />
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/member_details_show_img_qrcode"
@@ -81,8 +110,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
             android:visibility="visible"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            />
 
         <TextView
             android:id="@+id/member_details_txt_emcontact"
@@ -92,10 +123,14 @@
             android:layout_marginTop="1dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="10dp"
-            android:text="when this member is in an emergency situation or an injury immediately call this number"
+            android:text="share EM contact via QR"
+            android:gravity="center"
             android:textColor="#E1635A"
             android:textSize="15sp"
             android:textStyle="normal" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/details_member_btn_share"
@@ -136,5 +171,6 @@
             app:tint="@color/white"
             android:contentDescription="@string/todo" />
     </LinearLayout>
+
 
 </RelativeLayout>

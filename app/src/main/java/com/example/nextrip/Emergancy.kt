@@ -140,7 +140,7 @@ class Emergancy : AppCompatActivity() {
                 val date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"))
                 val time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a"))
 
-                val emergancyData = EmergancyData(emid, firebaseAuth.currentUser?.uid.toString() , msg, intent.getStringExtra("lati").toString(), intent.getStringExtra("long").toString(), intent.getStringExtra("locationdetails").toString(), date, time, intent.getStringExtra("tripid").toString())
+                val emergancyData = EmergancyData(emid, firebaseAuth.currentUser?.email.toString() , msg, intent.getStringExtra("lati").toString(), intent.getStringExtra("long").toString(), intent.getStringExtra("locationdetails").toString(), date, time, intent.getStringExtra("tripid").toString())
 
                 reference.child(emid).setValue(emergancyData).addOnCompleteListener{
                     if(it.isSuccessful){

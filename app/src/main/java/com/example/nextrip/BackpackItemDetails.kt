@@ -1,14 +1,13 @@
 package com.example.nextrip
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nextrip.model.ItemData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
@@ -49,9 +48,9 @@ class BackpackItemDetails : AppCompatActivity() {
         desc = findViewById(R.id.item_details_txt_desc)
         about = findViewById(R.id.item_details_txt_show_about)
 
-        imgrent = findViewById(R.id.item_details_img_rented)
-        imgfriend = findViewById(R.id.item_details_img_friend_member)
-        imgmy = findViewById(R.id.item_details_img_my)
+//        imgrent = findViewById(R.id.item_details_img_rented)
+//        imgfriend = findViewById(R.id.item_details_img_friend_member)
+//        imgmy = findViewById(R.id.item_details_img_my)
 
         btnshare = findViewById(R.id.details_item_btn_share)
         btnedit = findViewById(R.id.details_item_btn_update)
@@ -79,17 +78,17 @@ class BackpackItemDetails : AppCompatActivity() {
 
     private fun showItemDetails() {
 
-        if(intent.getStringExtra("itemrented").toString() == "A rented item*"){
-            imgrent.visibility = View.VISIBLE
-        }else if(intent.getStringExtra("itemrented").toString() == "One member item"){
-            imgfriend.visibility = View.VISIBLE
-        }else if(intent.getStringExtra("itemrented").toString() == "One of my item"){
-            imgmy.visibility = View.VISIBLE
-        }else{
-            imgfriend.visibility = View.INVISIBLE
-            imgrent.visibility = View.INVISIBLE
-            imgmy.visibility = View.INVISIBLE
-        }
+//        if(intent.getStringExtra("itemrented").toString() == "A rented item*"){
+//            imgrent.visibility = View.VISIBLE
+//        }else if(intent.getStringExtra("itemrented").toString() == "One member item"){
+//            imgfriend.visibility = View.VISIBLE
+//        }else if(intent.getStringExtra("itemrented").toString() == "One of my item"){
+//            imgmy.visibility = View.VISIBLE
+//        }else{
+//            imgfriend.visibility = View.INVISIBLE
+//            imgrent.visibility = View.INVISIBLE
+//            imgmy.visibility = View.INVISIBLE
+//        }
 
         about.text = intent.getStringExtra("itemrented").toString()
         name.text = intent.getStringExtra("itemname").toString()
@@ -105,6 +104,10 @@ class BackpackItemDetails : AppCompatActivity() {
         val itemName = v.findViewById<TextInputEditText>(R.id.bName)
         val itemQuantity = v.findViewById<TextInputEditText>(R.id.bQuantity)
         val itemDescription=v.findViewById<TextInputEditText>(R.id.bDescription)
+
+        itemName.setText(intent.getStringExtra("itemname").toString())
+        itemQuantity.setText(intent.getStringExtra("itemquantity").toString())
+        itemDescription.setText(intent.getStringExtra("itemdesc").toString())
 
         val addDialog = AlertDialog.Builder(this)
         addDialog.setView(v)
@@ -160,6 +163,7 @@ class BackpackItemDetails : AppCompatActivity() {
                         }else{
 
                         }
+                        back()
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this,"Cannot add $name", Toast.LENGTH_LONG).show()

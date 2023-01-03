@@ -8,28 +8,29 @@
     android:orientation="vertical"
     android:padding="20dp">
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Completed Journeys"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="200dp"
-        android:textSize="25dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="06"
-        android:layout_marginTop="-66dp"
-        android:layout_marginLeft="250dp"
-        android:layout_marginRight="50dp"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        android:textColor="@color/blue"/>
+        android:text="Welcome"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+
+        android:textSize="30dp"
+        android:textColor="#1C77FA"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/mailView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:gravity="center"
+
+
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textStyle="normal"/>
+
+
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +54,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/blue01"
+                android:background="#400373F3"
                 android:padding="10dp">
 
                 <TextView
@@ -138,7 +139,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/green01"
+                android:background="#4008F303"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -154,7 +155,7 @@
                     android:layout_height="80dp"
                     android:maxHeight="100dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/luggage"
+                    android:src="@drawable/travelerr"
                     android:layout_marginLeft="230dp"
 
                     ></ImageView>

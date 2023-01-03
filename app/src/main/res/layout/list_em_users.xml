@@ -11,13 +11,14 @@
     app:cardUseCompatPadding="true"
     android:layout_marginTop="5dp"
     android:layout_marginStart="20dp"
+
     android:layout_marginEnd="20dp">
 
     <LinearLayout
         android:id="@+id/component_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
+        android:background="#40F3032E"
         android:orientation="horizontal">
 
 
@@ -28,6 +29,7 @@
             android:layout_margin="20dp"
             android:layout_weight="1"
             android:orientation="vertical"
+
             android:padding="10dp">
 
             <TextView
@@ -36,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 android:text="userid"
-                android:textColor="#EAB517"
+                android:textColor="#EA1717"
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
@@ -46,6 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 android:text="usersmsg"
+                android:drawableLeft="@drawable/ic_message"
+                android:drawablePadding="5dp"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -65,33 +69,38 @@
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="latitude"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="5dp"
                     android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/list_em_show_longitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="33dp"
+                    android:layout_marginTop="45dp"
                     android:layout_marginEnd="6dp"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="5dp"
                     android:layout_marginBottom="6dp"
                     android:text="longitude"
                     android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/list_em_show_locationdetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="80dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="locationdetails"
-                    android:textColor="@color/blue"
+
+                    android:textColor="#575757"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -100,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="90dp"
+                    android:layout_marginTop="110dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="date"
@@ -113,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="103sp"
+                    android:layout_marginTop="135sp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="6dp"
                     android:text="time"

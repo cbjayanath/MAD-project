@@ -7,8 +7,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    app:cardElevation="3dp"
-    app:cardMaxElevation="5dp"
+
     app:cardUseCompatPadding="true"
     android:layout_marginTop="5dp"
     android:layout_marginStart="20dp"
@@ -18,6 +17,7 @@
         android:id="@+id/component_member"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#400373F3"
         android:orientation="horizontal">
 
 
@@ -35,7 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:text="Name"
+                android:text=" Name"
+                android:drawableLeft="@drawable/ic_person"
+                android:drawablePadding="5dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -51,9 +53,14 @@
                     android:id="@+id/list_member_txt_show_phonenumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:text="Phonenumber"
-                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="5dp"
+                    android:text=" Phonenumber"
+                    android:textColor="#575757"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
