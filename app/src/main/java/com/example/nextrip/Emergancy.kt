@@ -1,9 +1,7 @@
 package com.example.nextrip
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,20 +9,17 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nextrip.Adapters.BackpackAdapter
 import com.example.nextrip.Adapters.EmeragancyAdapter
 import com.example.nextrip.model.EmergancyData
-import com.example.nextrip.model.ItemData
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class Emergancy : AppCompatActivity() {
 
@@ -40,6 +35,7 @@ class Emergancy : AppCompatActivity() {
 
     private lateinit var msgsendBtn: MaterialButton
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergancy)
@@ -93,10 +89,18 @@ class Emergancy : AppCompatActivity() {
                     emeragancyAdapter.setonItemClickListener(object : EmeragancyAdapter.onItemClickListener{
                         override fun onItemClick(position: Int) {
 
-                            val gmmIntentUri = Uri.parse("geo:${msgList[position].latitude},${msgList[position].longitude}")
-                            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-                            mapIntent.setPackage("com.google.android.apps.maps")
-                            startActivity(mapIntent)
+//                            val gmmIntentUri = Uri.parse("geo:${msgList[position].latitude},${msgList[position].longitude}")
+//                            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+//                            mapIntent.setPackage("com.google.android.apps.maps")
+//                            startActivity(mapIntent)
+
+                            val mapintent = Intent(this@Emergancy, MapsActivity_em_users::class.java)
+                            mapintent.putExtra("tripid", intent.getStringExtra("tripid").toString())
+                            mapintent.putExtra("lati", msgList[position].latitude.toString())
+                            mapintent.putExtra("long", msgList[position].longitude.toString())
+                            mapintent.putExtra("userid", msgList[position].userid.toString())
+                            mapintent.putExtra("location", msgList[position].locationdetails.toString())
+                            startActivity(mapintent)
 
                         }
 

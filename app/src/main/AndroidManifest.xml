@@ -16,13 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NexTrip"
         tools:targetApi="31">
-        <activity
-            android:name=".Emergancy"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -38,6 +32,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAgrbOqI2Jey6a-AMuM7QEq2nrYob-IvXs" />
 
+        <activity
+            android:name=".MapsActivity_em_users"
+            android:exported="false"
+            android:label="@string/title_activity_maps_em_users" />
+        <activity
+            android:name=".Emergancy"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".LocationCompleted"
             android:exported="false">
@@ -83,8 +88,6 @@
         <activity
             android:name=".WalkThrough_Slider"
             android:exported="true">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -180,16 +183,18 @@
         <activity
             android:name=".FirstScreen"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->    <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-            
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -205,11 +210,13 @@
         <activity
             android:name=".Member"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
             <meta-data
                 android:name="android.app.lib_name"
